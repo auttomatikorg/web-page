@@ -1,0 +1,81 @@
+---
+import type { Locale } from "@/config/site";
+import { route } from "@/i18n/utils";
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+
+const copy: Record<Locale, { text: string; accept: string; reject: string; more: string }> = {
+  es: {
+    text: "Usamos cookies propias y de terceros para mejorar tu experiencia y analizar el uso del sitio. La reserva de citas puede cargar contenido de terceros.",
+    accept: "Aceptar",
+    reject: "Rechazar",
+    more: "Más información",
+  },
+  ca: {
+    text: "Fem servir galetes pròpies i de tercers per millorar la teva experiència i analitzar l'ús del lloc. La reserva de cites pot carregar contingut de tercers.",
+    accept: "Acceptar",
+    reject: "Rebutjar",
+    more: "Més informació",
+  },
+  en: {
+    text: "We use first- and third-party cookies to improve your experience and analyse site usage. Booking a call may load third-party content.",
+    accept: "Accept",
+    reject: "Reject",
+    more: "Learn more",
+  },
+};
+const c = copy[lang];
+---
+
+<div
+  id="cookie-banner"
+  hidden
+  class="fixed inset-x-0 bottom-0 z-50 border-t border-ink/10 bg-white/95 backdrop-blur-md"
+  role="dialog"
+  aria-live="polite"
+  aria-label="Cookies"
+>
+  <div
+    class="container-x flex flex-col gap-4 py-4 md:flex-row md:items-center md:justify-between"
+  >
+    <p class="max-w-2xl text-sm text-ink-soft">
+      {c.text}
+      <a href={route("cookies", lang)} class="ml-1 font-medium text-primary underline">
+        {c.more}
+      </a>
+    </p>
+    <div class="flex shrink-0 gap-2">
+      <button
+        type="button"
+        data-cookie="reject"
+        class="rounded-full px-4 py-2 text-sm font-medium text-ink ring-1 ring-ink/20 transition-colors hover:bg-ink/5"
+      >
+        {c.reject}
+      </button>
+      <button
+        type="button"
+        data-cookie="accept"
+        class="rounded-full bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-dark"
+      >
+        {c.accept}
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const KEY = "auttomatik-cookie-consent";
+  const banner = document.getElementById("cookie-banner");
+  if (banner && !localStorage.getItem(KEY)) {
+    banner.hidden = false;
+  }
+  banner?.querySelectorAll<HTMLButtonElement>("[data-cookie]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      localStorage.setItem(KEY, btn.dataset.cookie || "accept");
+      if (banner) banner.hidden = true;
+    });
+  });
+</script>

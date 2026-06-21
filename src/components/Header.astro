@@ -1,0 +1,126 @@
+---
+import logo from "@/assets/logo.svg";
+import type { Locale } from "@/config/site";
+import { SITE } from "@/config/site";
+import { useTranslations } from "@/i18n/ui";
+import { route, type PageKey } from "@/i18n/utils";
+import { Icon } from "astro-icon/components";
+import LanguageSwitcher from "@/components/LanguageSwitcher.astro";
+import Button from "@/components/Button.astro";
+
+interface Props {
+  lang: Locale;
+  pageKey: PageKey;
+}
+const { lang, pageKey } = Astro.props;
+const t = useTranslations(lang);
+
+const navItems: { key: PageKey; label: string }[] = [
+  { key: "process", label: t("nav.process") },
+  { key: "about", label: t("nav.about") },
+  { key: "contact", label: t("nav.contact") },
+];
+---
+
+<header
+  class="sticky top-0 z-40 border-b border-ink/10 bg-cream-soft/85 backdrop-blur-md"
+>
+  <div class="container-x flex h-16 items-center justify-between gap-4 md:h-18">
+    <a
+      href={route("home", lang)}
+      class="flex items-center focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-primary"
+      aria-label="Auttomatik"
+    >
+      <img src={logo.src} alt="Auttomatik" class="h-7 w-auto md:h-8" />
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Principal">
+      {
+        navItems.map((item) => {
+          const active = item.key === pageKey;
+          return (
+            <a
+              href={route(item.key, lang)}
+              class={`rounded-full px-3.5 py-2 text-sm font-medium transition-colors hover:text-primary ${
+                active ? "text-primary" : "text-ink/80"
+              }`}
+              aria-current={active ? "page" : undefined}
+            >
+              {item.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+
+    <div class="flex items-center gap-1 md:gap-2">
+      <LanguageSwitcher lang={lang} pageKey={pageKey} class="hidden sm:block" />
+      <Button
+        href={SITE.booking.bookingUrl}
+        class="hidden md:inline-flex"
+        size="md"
+      >
+        {t("cta.bookShort")}
+      </Button>
+
+      <!-- Mobile menu toggle -->
+      <button
+        type="button"
+        id="menu-toggle"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-full text-ink hover:bg-ink/5 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-primary lg:hidden"
+        aria-label={t("common.menu")}
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <Icon name="lucide:menu" class="menu-open h-6 w-6" />
+        <Icon name="lucide:x" class="menu-close hidden h-6 w-6" />
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="hidden border-t border-ink/10 bg-cream-soft lg:hidden"
+  >
+    <nav class="container-x flex flex-col gap-1 py-4" aria-label="Móvil">
+      {
+        navItems.map((item) => {
+          const active = item.key === pageKey;
+          return (
+            <a
+              href={route(item.key, lang)}
+              class={`rounded-lg px-3 py-3 text-base font-medium transition-colors hover:bg-ink/5 ${
+                active ? "text-primary" : "text-ink"
+              }`}
+              aria-current={active ? "page" : undefined}
+            >
+              {item.label}
+            </a>
+          );
+        })
+      }
+      <div class="mt-2 flex items-center justify-between gap-3 border-t border-ink/10 pt-4">
+        <LanguageSwitcher lang={lang} pageKey={pageKey} />
+        <Button href={SITE.booking.bookingUrl} class="flex-1">
+          {t("cta.bookShort")}
+        </Button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  const iconOpen = toggle?.querySelector(".menu-open");
+  const iconClose = toggle?.querySelector(".menu-close");
+
+  toggle?.addEventListener("click", () => {
+    const isOpen = menu?.classList.toggle("hidden") === false;
+    toggle.setAttribute("aria-expanded", String(isOpen));
+    iconOpen?.classList.toggle("hidden", isOpen);
+    iconClose?.classList.toggle("hidden", !isOpen);
+  });
+</script>

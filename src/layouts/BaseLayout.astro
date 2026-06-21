@@ -1,0 +1,147 @@
+---
+import "@fontsource-variable/space-grotesk";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
+import "@/styles/global.css";
+
+import { SITE } from "@/config/site";
+import type { Locale } from "@/config/site";
+import { LANGUAGES, alternates, route, type PageKey } from "@/i18n/utils";
+import { useTranslations } from "@/i18n/ui";
+
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import WhatsAppFloat from "@/components/WhatsAppFloat.astro";
+import CookieBanner from "@/components/CookieBanner.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Locale;
+  pageKey: PageKey;
+  image?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  lang,
+  pageKey,
+  image = "/og/og-default.png",
+  noindex = false,
+} = Astro.props;
+
+const htmlLang = LANGUAGES[lang].htmlLang;
+const canonical = new URL(route(pageKey, lang), SITE.url).href;
+const ogImage = new URL(image, SITE.url).href;
+const fullTitle =
+  pageKey === "home" ? title : `${title} · ${SITE.name}`;
+
+const hreflangs = alternates(pageKey).map((a) => ({
+  hreflang: LANGUAGES[a.lang].htmlLang,
+  href: new URL(a.path, SITE.url).href,
+}));
+const xDefault = new URL(route(pageKey, "es"), SITE.url).href;
+
+const orgJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: SITE.name,
+  description: description,
+  url: SITE.url,
+  email: SITE.email,
+  image: ogImage,
+  areaServed: "ES",
+  knowsLanguage: ["es", "ca", "en"],
+  serviceType: "Consultoría e implementación de IA y automatización",
+  sameAs: [SITE.social.linkedin, SITE.social.instagram].filter(Boolean),
+};
+---
+
+<!doctype html>
+<html lang={htmlLang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- hreflang alternates -->
+    {
+      hreflangs.map((h) => (
+        <link rel="alternate" hreflang={h.hreflang} href={h.href} />
+      ))
+    }
+    <link rel="alternate" hreflang="x-default" href={xDefault} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={htmlLang.replace("-", "_")} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <meta name="theme-color" content="#DE7007" />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(orgJsonLd)}
+    />
+  </head>
+
+  <body class="min-h-screen bg-cream-soft text-ink antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-white"
+    >
+      {useTranslations(lang)("common.skip")}
+    </a>
+
+    <Header lang={lang} pageKey={pageKey} />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <Footer lang={lang} />
+    <WhatsAppFloat lang={lang} />
+    <CookieBanner lang={lang} />
+
+    <!-- Reveal on scroll (progressive enhancement) -->
+    <script>
+      const els = document.querySelectorAll(".reveal");
+      if ("IntersectionObserver" in window && els.length) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("is-visible");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -10% 0px", threshold: 0.1 }
+        );
+        els.forEach((el) => io.observe(el));
+      } else {
+        els.forEach((el) => el.classList.add("is-visible"));
+      }
+    </script>
+  </body>
+</html>

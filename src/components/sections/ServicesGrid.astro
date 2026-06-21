@@ -1,0 +1,47 @@
+---
+import Section from "@/components/Section.astro";
+import SectionHeading from "@/components/SectionHeading.astro";
+import Card from "@/components/Card.astro";
+import { Icon } from "astro-icon/components";
+import type { HomeContent } from "@/i18n/content/home";
+
+interface Props {
+  content: HomeContent["services"];
+  ctaHref: string;
+}
+const { content, ctaHref } = Astro.props;
+---
+
+<Section tone="cream" id="servicios">
+  <SectionHeading
+    eyebrow={content.eyebrow}
+    title={content.title}
+    intro={content.intro}
+    class="mb-14"
+  />
+
+  <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      content.items.map((item) => (
+        <Card class="reveal h-full">
+          <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+            <Icon name={item.icon} class="h-6 w-6" />
+          </div>
+          <h3 class="text-xl font-semibold text-ink">{item.title}</h3>
+          <p class="mt-2 leading-relaxed text-ink-soft">{item.text}</p>
+        </Card>
+      ))
+    }
+
+    <a
+      href={ctaHref}
+      class="reveal group flex h-full flex-col justify-between rounded-2xl bg-primary p-6 text-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:bg-primary-dark hover:shadow-lg md:p-7"
+    >
+      <span class="text-xl font-semibold">{content.cta}</span>
+      <Icon
+        name="lucide:arrow-right"
+        class="mt-8 h-7 w-7 transition-transform duration-300 group-hover:translate-x-1.5"
+      />
+    </a>
+  </div>
+</Section>

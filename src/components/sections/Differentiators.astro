@@ -1,0 +1,35 @@
+---
+import Section from "@/components/Section.astro";
+import SectionHeading from "@/components/SectionHeading.astro";
+import { Icon } from "astro-icon/components";
+import type { HomeContent } from "@/i18n/content/home";
+
+interface Props {
+  content: HomeContent["differentiators"];
+}
+const { content } = Astro.props;
+---
+
+<Section tone="dark" id="enfoque">
+  <SectionHeading
+    eyebrow={content.eyebrow}
+    title={content.title}
+    intro={content.intro}
+    tone="dark"
+    class="mb-14"
+  />
+
+  <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    {
+      content.items.map((item) => (
+        <div class="reveal rounded-2xl bg-cream/5 p-6 ring-1 ring-cream/10 transition-colors hover:bg-cream/10">
+          <div class="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/15 text-primary-soft">
+            <Icon name={item.icon} class="h-6 w-6" />
+          </div>
+          <h3 class="text-lg font-semibold text-cream">{item.title}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-cream/70">{item.text}</p>
+        </div>
+      ))
+    }
+  </div>
+</Section>

@@ -1,0 +1,98 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/sections/PageHero.astro";
+import Section from "@/components/Section.astro";
+import BookingEmbed from "@/components/BookingEmbed.astro";
+import { Icon } from "astro-icon/components";
+import { SITE, whatsappLink } from "@/config/site";
+import type { Locale } from "@/config/site";
+import { getContact } from "@/i18n/content/contact";
+import { useTranslations } from "@/i18n/ui";
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const c = getContact(lang);
+const t = useTranslations(lang);
+const waHref = whatsappLink(t("wa.default"));
+---
+
+<BaseLayout
+  title={c.meta.title}
+  description={c.meta.description}
+  lang={lang}
+  pageKey="contact"
+>
+  <PageHero eyebrow={c.hero.eyebrow} title={c.hero.title} intro={c.hero.intro} />
+
+  <Section tone="cream">
+    <div class="grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-12">
+      <!-- Booking -->
+      <div>
+        <h2 class="mb-5 text-2xl font-semibold text-ink">{c.bookingTitle}</h2>
+        <BookingEmbed lang={lang} />
+      </div>
+
+      <!-- Side: what to expect + channels -->
+      <div class="space-y-6">
+        <div class="rounded-2xl bg-white p-6 ring-1 ring-ink/10">
+          <h3 class="text-lg font-semibold text-ink">{c.expect.title}</h3>
+          <ul class="mt-4 space-y-3">
+            {
+              c.expect.items.map((item) => (
+                <li class="flex items-start gap-2.5 text-ink-soft">
+                  <Icon
+                    name="lucide:check"
+                    class="mt-1 h-4 w-4 shrink-0 text-primary"
+                  />
+                  {item}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <a
+          href={waHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex items-center gap-4 rounded-2xl bg-white p-6 ring-1 ring-ink/10 transition-all hover:-translate-y-0.5 hover:shadow-md"
+        >
+          <span
+            class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#25D366]/15 text-[#1da851]"
+          >
+            <Icon name="lucide:message-circle" class="h-6 w-6" />
+          </span>
+          <span>
+            <span class="block font-semibold text-ink">{c.channels.whatsappTitle}</span>
+            <span class="block text-sm text-ink-soft">{c.channels.whatsappText}</span>
+          </span>
+          <Icon
+            name="lucide:arrow-right"
+            class="ml-auto h-5 w-5 text-ink-mute transition-transform group-hover:translate-x-1"
+          />
+        </a>
+
+        <a
+          href={`mailto:${SITE.email}`}
+          class="group flex items-center gap-4 rounded-2xl bg-white p-6 ring-1 ring-ink/10 transition-all hover:-translate-y-0.5 hover:shadow-md"
+        >
+          <span
+            class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary"
+          >
+            <Icon name="lucide:mail" class="h-6 w-6" />
+          </span>
+          <span>
+            <span class="block font-semibold text-ink">{c.channels.emailTitle}</span>
+            <span class="block text-sm text-ink-soft">{SITE.email}</span>
+          </span>
+          <Icon
+            name="lucide:arrow-right"
+            class="ml-auto h-5 w-5 text-ink-mute transition-transform group-hover:translate-x-1"
+          />
+        </a>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

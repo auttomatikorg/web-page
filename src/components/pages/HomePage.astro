@@ -1,0 +1,46 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Hero from "@/components/sections/Hero.astro";
+import ProblemSection from "@/components/sections/ProblemSection.astro";
+import Differentiators from "@/components/sections/Differentiators.astro";
+import WhyUs from "@/components/sections/WhyUs.astro";
+import Stats from "@/components/sections/Stats.astro";
+import FaqAccordion from "@/components/sections/FaqAccordion.astro";
+import CtaSection from "@/components/sections/CtaSection.astro";
+
+import { SITE, whatsappLink } from "@/config/site";
+import type { Locale } from "@/config/site";
+import { getHome } from "@/i18n/content/home";
+import { useTranslations } from "@/i18n/ui";
+import { route } from "@/i18n/utils";
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const c = getHome(lang);
+const t = useTranslations(lang);
+
+const bookingHref = SITE.booking.bookingUrl;
+const whatsappHref = whatsappLink(t("wa.default"));
+const processHref = route("process", lang);
+---
+
+<BaseLayout
+  title={c.meta.title}
+  description={c.meta.description}
+  lang={lang}
+  pageKey="home"
+>
+  <Hero content={c.hero} bookingHref={bookingHref} processHref={processHref} />
+  <ProblemSection content={c.problem} />
+  <Differentiators content={c.differentiators} />
+  <WhyUs content={c.why} />
+  <Stats content={c.stats} />
+  <FaqAccordion content={c.faq} />
+  <CtaSection
+    content={c.finalCta}
+    bookingHref={bookingHref}
+    whatsappHref={whatsappHref}
+  />
+</BaseLayout>

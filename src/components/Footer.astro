@@ -1,0 +1,130 @@
+---
+import logoInverse from "@/assets/logo-inverse.svg";
+import type { Locale } from "@/config/site";
+import { SITE, whatsappLink } from "@/config/site";
+import { useTranslations } from "@/i18n/ui";
+import { route } from "@/i18n/utils";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+
+const navLinks = [
+  { href: route("process", lang), label: t("nav.process") },
+  { href: route("about", lang), label: t("nav.about") },
+  { href: route("contact", lang), label: t("nav.contact") },
+];
+
+const legalLinks = [
+  { href: route("legal", lang), label: t("footer.legal") },
+  { href: route("privacy", lang), label: t("footer.privacy") },
+  { href: route("cookies", lang), label: t("footer.cookies") },
+];
+---
+
+<footer class="bg-ink text-cream">
+  <div class="container-x py-16">
+    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+      <div class="lg:col-span-1">
+        <img src={logoInverse.src} alt="Auttomatik" class="h-7 w-auto" />
+        <p class="mt-4 max-w-xs text-sm leading-relaxed text-cream/70">
+          {t("footer.tagline")}
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-cream/60">
+          {t("footer.nav")}
+        </h3>
+        <ul class="mt-4 space-y-2.5">
+          {
+            navLinks.map((l) => (
+              <li>
+                <a
+                  href={l.href}
+                  class="text-sm text-cream/85 transition-colors hover:text-primary-soft"
+                >
+                  {l.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-cream/60">
+          {t("footer.legalTitle")}
+        </h3>
+        <ul class="mt-4 space-y-2.5">
+          {
+            legalLinks.map((l) => (
+              <li>
+                <a
+                  href={l.href}
+                  class="text-sm text-cream/85 transition-colors hover:text-primary-soft"
+                >
+                  {l.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-cream/60">
+          {t("footer.contactTitle")}
+        </h3>
+        <ul class="mt-4 space-y-2.5 text-sm">
+          <li>
+            <a
+              href={`mailto:${SITE.email}`}
+              class="inline-flex items-center gap-2 text-cream/85 transition-colors hover:text-primary-soft"
+            >
+              <Icon name="lucide:mail" class="h-4 w-4" />
+              {SITE.email}
+            </a>
+          </li>
+          <li>
+            <a
+              href={whatsappLink(t("wa.default"))}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 text-cream/85 transition-colors hover:text-primary-soft"
+            >
+              <Icon name="lucide:message-circle" class="h-4 w-4" />
+              WhatsApp
+            </a>
+          </li>
+          {
+            SITE.social.linkedin && (
+              <li>
+                <a
+                  href={SITE.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 text-cream/85 transition-colors hover:text-primary-soft"
+                >
+                  <Icon name="lucide:linkedin" class="h-4 w-4" />
+                  LinkedIn
+                </a>
+              </li>
+            )
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="mt-12 flex flex-col items-start justify-between gap-2 border-t border-cream/15 pt-6 text-sm text-cream/60 md:flex-row md:items-center"
+    >
+      <p>© {year} {SITE.legal.companyName}. {t("footer.rights")}</p>
+      <p>{t("footer.builtWith")}</p>
+    </div>
+  </div>
+</footer>

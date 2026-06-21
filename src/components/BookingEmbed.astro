@@ -1,0 +1,110 @@
+---
+import { SITE } from "@/config/site";
+import { useTranslations } from "@/i18n/ui";
+import type { Locale } from "@/config/site";
+import Button from "@/components/Button.astro";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  lang: Locale;
+  class?: string;
+}
+const { lang, class: className = "" } = Astro.props;
+const t = useTranslations(lang);
+const { provider, calLink, bookingUrl } = SITE.booking;
+---
+
+<div class={`overflow-hidden rounded-2xl bg-white ring-1 ring-ink/10 ${className}`}>
+  {
+    provider === "cal" && (
+      <>
+        <div
+          id="cal-inline"
+          data-cal-link={calLink}
+          style="width:100%;min-height:640px;overflow:auto"
+        />
+        <script is:inline>
+          (function (C, A, L) {
+            let p = function (a, ar) {
+              a.q.push(ar);
+            };
+            let d = C.document;
+            C.Cal =
+              C.Cal ||
+              function () {
+                let cal = C.Cal;
+                let ar = arguments;
+                if (!cal.loaded) {
+                  cal.ns = {};
+                  cal.q = cal.q || [];
+                  d.head.appendChild(d.createElement("script")).src = A;
+                  cal.loaded = true;
+                }
+                if (ar[0] === L) {
+                  const api = function () {
+                    p(api, arguments);
+                  };
+                  const namespace = ar[1];
+                  api.q = api.q || [];
+                  if (typeof namespace === "string") {
+                    cal.ns[namespace] = cal.ns[namespace] || api;
+                    p(cal.ns[namespace], ar);
+                    p(cal, ["initNamespace", namespace]);
+                  } else p(cal, ar);
+                  return;
+                }
+                p(cal, ar);
+              };
+          })(window, "https://app.cal.com/embed/embed.js", "init");
+          (function () {
+            const el = document.getElementById("cal-inline");
+            const link = el && el.getAttribute("data-cal-link");
+            if (!link) return;
+            Cal("init", { origin: "https://cal.com" });
+            Cal("inline", {
+              elementOrSelector: "#cal-inline",
+              calLink: link,
+              layout: "month_view",
+            });
+            Cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
+          })();
+        </script>
+      </>
+    )
+  }
+
+  {
+    provider === "calendly" && (
+      <>
+        <div
+          class="calendly-inline-widget"
+          data-url={bookingUrl}
+          style="min-width:320px;height:680px;"
+        />
+        <script
+          is:inline
+          src="https://assets.calendly.com/assets/external/widget.js"
+          async
+        />
+      </>
+    )
+  }
+
+  {
+    provider === "link" && (
+      <div class="flex flex-col items-center gap-4 p-10 text-center">
+        <Icon name="lucide:calendar-check" class="h-10 w-10 text-primary" />
+        <p class="max-w-sm text-ink-soft">
+          {lang === "ca"
+            ? "Tria el dia i l'hora que millor et vagi per a la teva auditoria gratuïta."
+            : lang === "en"
+              ? "Pick the day and time that works best for your free audit."
+              : "Elige el día y la hora que mejor te venga para tu auditoría gratuita."}
+        </p>
+        <Button href={bookingUrl} size="lg" variant="primary">
+          {t("cta.bookFree")}
+        </Button>
+      </div>
+    )
+  }
+</div>

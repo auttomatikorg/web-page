@@ -1,0 +1,36 @@
+---
+import { whatsappLink } from "@/config/site";
+import { useTranslations } from "@/i18n/ui";
+import type { Locale } from "@/config/site";
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const href = whatsappLink(t("wa.default"));
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={t("cta.whatsapp")}
+  class="group fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg ring-1 ring-black/5 transition-transform duration-200 hover:scale-105 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-primary md:bottom-7 md:right-7"
+>
+  <svg
+    viewBox="0 0 32 32"
+    class="h-7 w-7 fill-current"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path
+      d="M16.003 2.667C8.64 2.667 2.67 8.637 2.67 16c0 2.35.616 4.65 1.787 6.677L2.667 29.333l6.83-1.776A13.27 13.27 0 0 0 16.003 29.3C23.366 29.3 29.336 23.33 29.336 15.97 29.336 8.637 23.366 2.667 16.003 2.667Zm0 24.03a11.04 11.04 0 0 1-5.63-1.54l-.404-.24-4.05 1.054 1.08-3.95-.263-.406a10.98 10.98 0 0 1-1.69-5.875c0-6.08 4.948-11.027 11.03-11.027 2.946 0 5.714 1.148 7.797 3.232a10.96 10.96 0 0 1 3.23 7.8c0 6.08-4.948 11.027-11.03 11.027Zm6.05-8.26c-.332-.166-1.96-.967-2.264-1.077-.304-.11-.525-.166-.746.166-.22.332-.856 1.077-1.05 1.298-.193.221-.387.249-.718.083-.332-.166-1.4-.516-2.665-1.645-.985-.879-1.65-1.964-1.843-2.296-.193-.332-.02-.51.146-.676.15-.149.332-.387.498-.581.166-.193.221-.332.332-.553.11-.221.055-.415-.028-.581-.083-.166-.746-1.8-1.022-2.466-.27-.646-.543-.558-.746-.568l-.636-.011a1.22 1.22 0 0 0-.884.415c-.304.332-1.16 1.133-1.16 2.766 0 1.632 1.188 3.21 1.354 3.43.166.221 2.337 3.57 5.665 5.006.792.342 1.41.546 1.89.699.794.252 1.517.216 2.088.131.637-.095 1.96-.801 2.236-1.575.276-.774.276-1.437.193-1.575-.083-.138-.304-.221-.636-.387Z"
+    ></path>
+  </svg>
+  <span
+    class="pointer-events-none absolute right-16 hidden whitespace-nowrap rounded-lg bg-ink px-3 py-1.5 text-sm text-cream opacity-0 shadow-md transition-opacity duration-200 group-hover:opacity-100 md:block"
+  >
+    WhatsApp
+  </span>
+</a>
