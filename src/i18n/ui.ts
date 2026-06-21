@@ -30,8 +30,7 @@ export const ui = {
     "wa.default":
       "Hola, me gustaría saber cómo la IA puede ayudar a mi empresa.",
 
-    "footer.tagline":
-      "IA operativa para pymes que quieren escalar sin disparar costes.",
+    "footer.tagline": "Systems that move your business beyond busywork.",
     "footer.nav": "Navegación",
     "footer.legalTitle": "Legal",
     "footer.contactTitle": "Contacto",
@@ -67,8 +66,7 @@ export const ui = {
     "wa.default":
       "Hola, m'agradaria saber com la IA pot ajudar la meva empresa.",
 
-    "footer.tagline":
-      "IA operativa per a pimes que volen escalar sense disparar costos.",
+    "footer.tagline": "Systems that move your business beyond busywork.",
     "footer.nav": "Navegació",
     "footer.legalTitle": "Legal",
     "footer.contactTitle": "Contacte",
@@ -103,8 +101,7 @@ export const ui = {
 
     "wa.default": "Hi, I'd like to know how AI can help my company.",
 
-    "footer.tagline":
-      "Operational AI for SMEs that want to scale without ballooning costs.",
+    "footer.tagline": "Systems that move your business beyond busywork.",
     "footer.nav": "Navigation",
     "footer.legalTitle": "Legal",
     "footer.contactTitle": "Contact",

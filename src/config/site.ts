@@ -29,10 +29,14 @@ export const SITE = {
   booking: {
     /** Set provider to "cal" (default) or "calendly" or "link" */
     provider: "cal" as "cal" | "calendly" | "link",
-    /** Cal.com link path, e.g. "auttomatik/auditoria-ia" */
-    calLink: "auttomatik/auditoria-ia",
-    /** Full URL used as fallback / for provider "link" or "calendly" */
-    bookingUrl: "https://cal.com/auttomatik/auditoria-ia",
+    /** Cal link path (namespace), e.g. "auttomatik/consulting" */
+    calLink: "auttomatik/consulting",
+    /** Full booking URL (used by every CTA button and as embed fallback) */
+    bookingUrl: "https://cal.eu/auttomatik/consulting",
+    /** Cal instance origin for the inline embed (Cal EU instance) */
+    calOrigin: "https://cal.eu",
+    /** Cal embed script for that instance */
+    calEmbedJs: "https://app.cal.eu/embed/embed.js",
   },
 
   /** TODO: social profiles (leave empty string to hide) */

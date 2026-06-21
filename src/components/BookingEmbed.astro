@@ -11,7 +11,7 @@ interface Props {
 }
 const { lang, class: className = "" } = Astro.props;
 const t = useTranslations(lang);
-const { provider, calLink, bookingUrl } = SITE.booking;
+const { provider, calLink, bookingUrl, calOrigin, calEmbedJs } = SITE.booking;
 ---
 
 <div class={`overflow-hidden rounded-2xl bg-white ring-1 ring-ink/10 ${className}`}>
@@ -21,46 +21,54 @@ const { provider, calLink, bookingUrl } = SITE.booking;
         <div
           id="cal-inline"
           data-cal-link={calLink}
+          data-cal-origin={calOrigin}
+          data-cal-embed={calEmbedJs}
           style="width:100%;min-height:640px;overflow:auto"
         />
         <script is:inline>
-          (function (C, A, L) {
-            let p = function (a, ar) {
-              a.q.push(ar);
-            };
-            let d = C.document;
-            C.Cal =
-              C.Cal ||
-              function () {
-                let cal = C.Cal;
-                let ar = arguments;
-                if (!cal.loaded) {
-                  cal.ns = {};
-                  cal.q = cal.q || [];
-                  d.head.appendChild(d.createElement("script")).src = A;
-                  cal.loaded = true;
-                }
-                if (ar[0] === L) {
-                  const api = function () {
-                    p(api, arguments);
-                  };
-                  const namespace = ar[1];
-                  api.q = api.q || [];
-                  if (typeof namespace === "string") {
-                    cal.ns[namespace] = cal.ns[namespace] || api;
-                    p(cal.ns[namespace], ar);
-                    p(cal, ["initNamespace", namespace]);
-                  } else p(cal, ar);
-                  return;
-                }
-                p(cal, ar);
-              };
-          })(window, "https://app.cal.com/embed/embed.js", "init");
           (function () {
-            const el = document.getElementById("cal-inline");
-            const link = el && el.getAttribute("data-cal-link");
+            var el = document.getElementById("cal-inline");
+            if (!el) return;
+            var link = el.getAttribute("data-cal-link");
+            var origin =
+              el.getAttribute("data-cal-origin") || "https://cal.com";
+            var embedJs =
+              el.getAttribute("data-cal-embed") ||
+              "https://app.cal.com/embed/embed.js";
             if (!link) return;
-            Cal("init", { origin: "https://cal.com" });
+            (function (C, A, L) {
+              var p = function (a, ar) {
+                a.q.push(ar);
+              };
+              var d = C.document;
+              C.Cal =
+                C.Cal ||
+                function () {
+                  var cal = C.Cal;
+                  var ar = arguments;
+                  if (!cal.loaded) {
+                    cal.ns = {};
+                    cal.q = cal.q || [];
+                    d.head.appendChild(d.createElement("script")).src = A;
+                    cal.loaded = true;
+                  }
+                  if (ar[0] === L) {
+                    var api = function () {
+                      p(api, arguments);
+                    };
+                    var namespace = ar[1];
+                    api.q = api.q || [];
+                    if (typeof namespace === "string") {
+                      cal.ns[namespace] = cal.ns[namespace] || api;
+                      p(cal.ns[namespace], ar);
+                      p(cal, ["initNamespace", namespace]);
+                    } else p(cal, ar);
+                    return;
+                  }
+                  p(cal, ar);
+                };
+            })(window, embedJs, "init");
+            Cal("init", { origin: origin });
             Cal("inline", {
               elementOrSelector: "#cal-inline",
               calLink: link,
