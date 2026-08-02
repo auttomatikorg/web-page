@@ -36,7 +36,7 @@ const es: AboutContent = {
       "Nacimos para resolver un problema concreto: las pymes saben que la IA importa, pero el mercado está lleno de demos, chatbots y promesas que no se traducen en resultados.",
   },
   manifesto: {
-    title: "Nuestro manifiesto",
+    title: "Nuestra filosofía",
     paragraphs: [
       "No creemos en la IA como espectáculo. Creemos en la IA que ahorra horas, reduce errores y deja a tu equipo libre para lo que de verdad importa.",
       "Empezamos siempre por tus procesos y tu retorno, nunca por la herramienta de moda. Si algo no compensa, te lo decimos. Preferimos un proyecto menos a un proyecto que no se use.",
@@ -129,7 +129,7 @@ const ca: AboutContent = {
       "Vam néixer per resoldre un problema concret: les pimes saben que la IA importa, però el mercat és ple de demos, chatbots i promeses que no es tradueixen en resultats.",
   },
   manifesto: {
-    title: "El nostre manifest",
+    title: "La nostra filosofia",
     paragraphs: [
       "No creiem en la IA com a espectacle. Creiem en la IA que estalvia hores, redueix errors i deixa el teu equip lliure per al que de debò importa.",
       "Comencem sempre pels teus processos i el teu retorn, mai per l'eina de moda. Si una cosa no compensa, t'ho diem. Preferim un projecte menys que un projecte que no es faci servir.",
@@ -222,7 +222,7 @@ const en: AboutContent = {
       "We were born to solve a concrete problem: SMEs know AI matters, but the market is full of demos, chatbots and promises that don't turn into results.",
   },
   manifesto: {
-    title: "Our manifesto",
+    title: "Our philosophy",
     paragraphs: [
       "We don't believe in AI as spectacle. We believe in AI that saves hours, reduces errors and frees your team for what truly matters.",
       "We always start with your processes and your return, never with the trendy tool. If something doesn't pay off, we'll tell you. We'd rather do one project less than one nobody uses.",

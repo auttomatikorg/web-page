@@ -114,6 +114,12 @@
     opacity: 1;
     transform: none;
   }
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
   @media (prefers-reduced-motion: reduce) {
     .reveal {
       opacity: 1;

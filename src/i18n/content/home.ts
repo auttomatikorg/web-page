@@ -70,7 +70,7 @@ const es: HomeContent = {
   },
   hero: {
     eyebrow: "Implementación de procesos escalables",
-    title: "Deja de probar IA. Empieza a implementarla.",
+    title: "Empieza a implementar procesos escalables",
     subtitle:
       "Ayudamos a pymes con procesos repetitivos a automatizar operaciones sin disparar costes ni caer en experimentos que no generan retorno.",
     primaryCta: "Reserva tu auditoría gratuita",
@@ -261,7 +261,7 @@ const ca: HomeContent = {
   },
   hero: {
     eyebrow: "Implementació de processos escalables",
-    title: "Deixa de provar IA. Comença a implementar-la.",
+    title: "Comença a implementar processos escalables",
     subtitle:
       "Ajudem pimes amb processos repetitius a automatitzar operacions sense disparar costos ni caure en experiments que no generen retorn.",
     primaryCta: "Reserva la teva auditoria gratuïta",
@@ -452,7 +452,7 @@ const en: HomeContent = {
   },
   hero: {
     eyebrow: "Scalable process implementation",
-    title: "Stop testing AI. Start implementing it.",
+    title: "Start implementing scalable processes",
     subtitle:
       "We help SMEs with repetitive processes automate operations without ballooning costs or falling into experiments that deliver no return.",
     primaryCta: "Book your free audit",
