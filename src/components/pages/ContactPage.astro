@@ -26,8 +26,10 @@ const waHref = whatsappLink(t("wa.default"));
 >
   <PageHero eyebrow={c.hero.eyebrow} title={c.hero.title} intro={c.hero.intro} />
 
-  <Section tone="cream">
-    <div class="grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-12">
+  <Section tone="cream" containerClass="max-w-[92rem]">
+    <div
+      class="grid gap-10 lg:grid-cols-[minmax(0,1.8fr)_minmax(22rem,1fr)] lg:gap-10 xl:grid-cols-[minmax(0,2.1fr)_minmax(24rem,0.95fr)] xl:gap-12"
+    >
       <!-- Booking -->
       <div>
         <h2 class="mb-5 text-2xl font-semibold text-ink">{c.bookingTitle}</h2>
