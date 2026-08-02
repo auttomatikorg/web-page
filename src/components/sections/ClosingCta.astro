@@ -14,23 +14,28 @@ const t = useTranslations(lang);
 
 const defaults: Record<Locale, { title: string; text: string }> = {
   es: {
-    title: "Empieza por una auditoría, no por una factura",
-    text: "Una conversación para entender tu operativa y decirte, con criterio, qué tiene sentido automatizar primero. Sin humo y sin compromiso.",
+    title: "Reserva una auditoría con nuestro equipo",
+    text: "Una conversación para entender tu operativa y decirte, con criterio, qué tiene sentido automatizar primero.",
   },
   ca: {
-    title: "Comença per una auditoria, no per una factura",
-    text: "Una conversa per entendre la teva operativa i dir-te, amb criteri, què té sentit automatitzar primer. Sense fum i sense compromís.",
+    title: "Reserva una auditoria amb el nostre equip",
+    text: "Una conversa per entendre la teva operativa i dir-te, amb criteri, què té sentit automatitzar primer.",
   },
   en: {
-    title: "Start with an audit, not an invoice",
-    text: "A conversation to understand your operations and tell you, with judgement, what makes sense to automate first. No hype, no commitment.",
+    title: "Book an audit with our team",
+    text: "A conversation to understand your operations and tell you, with judgement, what makes sense to automate first.",
   },
 };
 
 const content = {
   title: title ?? defaults[lang].title,
   text: text ?? defaults[lang].text,
-  primaryCta: t("cta.bookFree"),
+  primaryCta:
+    lang === "ca"
+      ? "Reserva auditoria gratuïta"
+      : lang === "en"
+        ? "Book a free audit"
+        : "Reserva auditoría gratuita",
   secondaryCta: t("cta.whatsapp"),
 };
 ---

@@ -3,7 +3,6 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Hero from "@/components/sections/Hero.astro";
 import ProblemSection from "@/components/sections/ProblemSection.astro";
 import Differentiators from "@/components/sections/Differentiators.astro";
-import WhyUs from "@/components/sections/WhyUs.astro";
 import Stats from "@/components/sections/Stats.astro";
 import FaqAccordion from "@/components/sections/FaqAccordion.astro";
 import CtaSection from "@/components/sections/CtaSection.astro";
@@ -34,9 +33,8 @@ const processHref = route("process", lang);
 >
   <Hero content={c.hero} bookingHref={bookingHref} processHref={processHref} />
   <ProblemSection content={c.problem} />
-  <Differentiators content={c.differentiators} />
-  <WhyUs content={c.why} />
   <Stats content={c.stats} />
+  <Differentiators content={c.differentiators} />
   <FaqAccordion content={c.faq} />
   <CtaSection
     content={c.finalCta}

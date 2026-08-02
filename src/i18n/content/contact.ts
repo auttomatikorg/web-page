@@ -15,9 +15,9 @@ export interface ContactContent {
 
 const es: ContactContent = {
   meta: {
-    title: "Contacto · Reserva tu auditoría IA gratuita",
+    title: "Contacto · Reserva tu auditoría gratuita",
     description:
-      "Reserva una auditoría IA gratuita o escríbenos por WhatsApp. Te decimos, con criterio, qué tiene sentido automatizar primero en tu empresa.",
+      "Reserva una auditoría gratuita o escríbenos por WhatsApp. Te decimos, con criterio, qué tiene sentido automatizar primero en tu empresa.",
   },
   hero: {
     eyebrow: "Contacto",
@@ -25,14 +25,14 @@ const es: ContactContent = {
     intro:
       "Reserva una auditoría gratuita y sin compromiso. En una conversación entendemos tus procesos y te decimos por dónde empezar.",
   },
-  bookingTitle: "Reserva tu auditoría IA gratuita",
+  bookingTitle: "Reserva tu auditoría gratuita",
   expect: {
-    title: "Qué pasa en la llamada",
+    title: "¿Qué pasará en la llamada?",
     items: [
-      "Entendemos tu empresa, tus procesos y tus cuellos de botella.",
-      "Identificamos las primeras oportunidades de automatización.",
-      "Te damos una orientación honesta de impacto y siguientes pasos.",
-      "Sin presión comercial: si no tiene sentido, te lo decimos.",
+      "Entenderemos tu empresa, tus procesos y tus cuellos de botella.",
+      "Identificaremos las primeras oportunidades de automatización.",
+      "Te daremos una orientación honesta de impacto y siguientes pasos.",
+      "Sin presión comercial: si no tiene sentido, te lo diremos.",
     ],
   },
   channels: {
@@ -45,9 +45,9 @@ const es: ContactContent = {
 
 const ca: ContactContent = {
   meta: {
-    title: "Contacte · Reserva la teva auditoria d'IA gratuïta",
+    title: "Contacte · Reserva la teva auditoria gratuïta",
     description:
-      "Reserva una auditoria d'IA gratuïta o escriu-nos per WhatsApp. Et diem, amb criteri, què té sentit automatitzar primer a la teva empresa.",
+      "Reserva una auditoria gratuïta o escriu-nos per WhatsApp. Et diem, amb criteri, què té sentit automatitzar primer a la teva empresa.",
   },
   hero: {
     eyebrow: "Contacte",
@@ -55,7 +55,7 @@ const ca: ContactContent = {
     intro:
       "Reserva una auditoria gratuïta i sense compromís. En una conversa entenem els teus processos i et diem per on començar.",
   },
-  bookingTitle: "Reserva la teva auditoria d'IA gratuïta",
+  bookingTitle: "Reserva la teva auditoria gratuïta",
   expect: {
     title: "Què passa a la trucada",
     items: [
@@ -75,9 +75,9 @@ const ca: ContactContent = {
 
 const en: ContactContent = {
   meta: {
-    title: "Contact · Book your free AI audit",
+    title: "Contact · Book your free audit",
     description:
-      "Book a free AI audit or message us on WhatsApp. We'll tell you, with judgement, what makes sense to automate first in your company.",
+      "Book a free audit or message us on WhatsApp. We'll tell you, with judgement, what makes sense to automate first in your company.",
   },
   hero: {
     eyebrow: "Contact",
@@ -85,7 +85,7 @@ const en: ContactContent = {
     intro:
       "Book a free, no-commitment audit. In one conversation we understand your processes and tell you where to start.",
   },
-  bookingTitle: "Book your free AI audit",
+  bookingTitle: "Book your free audit",
   expect: {
     title: "What happens on the call",
     items: [

@@ -22,13 +22,13 @@ const es: ProcessContent = {
   meta: {
     title: "Cómo trabajamos · Método IA por fases",
     description:
-      "Un método por fases para implementar IA con criterio: auditoría, quick wins, sistema interno y escalado. Cada fase con un resultado tangible y medible.",
+      "Un método en tres fases para implementar IA con criterio: auditoría, implementación del sistema y documentación con mantenimiento.",
   },
   hero: {
     eyebrow: "Cómo trabajamos",
-    title: "Un método por fases para implementar IA sin riesgos innecesarios",
+    title: "Tres fases para implementar IA sin riesgos innecesarios",
     intro:
-      "Avanzamos paso a paso, midiendo el impacto en cada fase. Así pruebas el valor antes de invertir más y nunca avanzas a ciegas.",
+      "Primero entendemos qué necesita tu empresa, después implementamos el sistema y finalmente te dejamos documentación, soporte y mantenimiento para que funcione en el día a día.",
   },
   labels: {
     objective: "Objetivo",
@@ -47,47 +47,34 @@ const es: ProcessContent = {
         "Evaluación de las herramientas que ya usas",
         "Estimación de ahorro y priorización por ROI",
       ],
-      duration: "1-3 semanas",
+      duration: "2-3 días",
       result: "Hoja de ruta clara y priorizada.",
     },
     {
-      title: "Implementación de quick wins",
+      title: "Implementación del sistema",
       objective:
-        "Generar valor rápido con automatizaciones y agentes en procesos de alto impacto.",
+        "Construir e integrar la solución de IA o automatización que mejor encaja con lo que tu empresa necesita.",
       activities: [
-        "Selección de los casos de mayor retorno",
-        "Construcción e integración con tus sistemas",
-        "Pruebas con datos reales y ajustes",
-        "Medición de horas ahorradas",
+        "Diseño del sistema según la hoja de ruta",
+        "Construcción de agentes, automatizaciones e integraciones",
+        "Pruebas con datos y casos reales de tu empresa",
+        "Ajustes técnicos para asegurar rendimiento y fiabilidad",
       ],
-      duration: "2-6 semanas",
-      result: "Primeras horas ahorradas y prueba de valor.",
+      duration: "2-4 semanas",
+      result: "Sistema implementado y listo para operar.",
     },
     {
-      title: "Sistema IA interno",
+      title: "Documentación y mantenimiento",
       objective:
-        "Convertir las piezas sueltas en un sistema integrado y adoptado por el equipo.",
+        "Transferir el conocimiento, acompañar al equipo y mantener el sistema para que siga funcionando bien.",
       activities: [
-        "Integración profunda con tus procesos",
-        "Formación práctica del equipo",
-        "Documentación y buenas prácticas",
-        "Optimización de modelos y costes",
-      ],
-      duration: "1-3 meses",
-      result: "Adopción real en el día a día.",
-    },
-    {
-      title: "Escalado y mejora continua",
-      objective:
-        "Hacer que la IA evolucione contigo y siga generando retorno en el tiempo.",
-      activities: [
-        "Nuevos agentes y automatizaciones",
-        "Monitorización y control de costes",
-        "Mantenimiento y mejoras continuas",
-        "Reporting de impacto periódico",
+        "Documentación clara del sistema y sus procesos",
+        "Formación práctica para el equipo",
+        "Monitorización, soporte y resolución de incidencias",
+        "Mantenimiento y mejoras según el uso real",
       ],
       duration: "Continuo",
-      result: "La IA como ventaja operativa continua.",
+      result: "Sistema documentado, mantenido y transferible.",
     },
   ],
   principles: {
@@ -108,7 +95,7 @@ const es: ProcessContent = {
       {
         icon: "lucide:file-text",
         title: "Todo documentado",
-        text: "Trazabilidad y transferencia de conocimiento: el sistema es tuyo.",
+        text: "Trazabilidad y transferencia de conocimiento.",
       },
     ],
   },
@@ -118,13 +105,13 @@ const ca: ProcessContent = {
   meta: {
     title: "Com treballem · Mètode IA per fases",
     description:
-      "Un mètode per fases per implementar IA amb criteri: auditoria, quick wins, sistema intern i escalat. Cada fase amb un resultat tangible i mesurable.",
+      "Un mètode en tres fases per implementar IA amb criteri: auditoria, implementació del sistema i documentació amb manteniment.",
   },
   hero: {
     eyebrow: "Com treballem",
-    title: "Un mètode per fases per implementar IA sense riscos innecessaris",
+    title: "Tres fases per implementar IA sense riscos innecessaris",
     intro:
-      "Avancem pas a pas, mesurant l'impacte a cada fase. Així proves el valor abans d'invertir més i mai avances a cegues.",
+      "Primer entenem què necessita la teva empresa, després implementem el sistema i finalment et deixem documentació, suport i manteniment perquè funcioni en el dia a dia.",
   },
   labels: {
     objective: "Objectiu",
@@ -143,47 +130,34 @@ const ca: ProcessContent = {
         "Avaluació de les eines que ja fas servir",
         "Estimació d'estalvi i priorització per ROI",
       ],
-      duration: "1-3 setmanes",
+      duration: "2-3 dies",
       result: "Full de ruta clar i prioritzat.",
     },
     {
-      title: "Implementació de quick wins",
+      title: "Implementació del sistema",
       objective:
-        "Generar valor ràpid amb automatitzacions i agents en processos d'alt impacte.",
+        "Construir i integrar la solució d'IA o automatització que millor encaixa amb el que necessita la teva empresa.",
       activities: [
-        "Selecció dels casos de més retorn",
-        "Construcció i integració amb els teus sistemes",
-        "Proves amb dades reals i ajustos",
-        "Mesura d'hores estalviades",
+        "Disseny del sistema segons el full de ruta",
+        "Construcció d'agents, automatitzacions i integracions",
+        "Proves amb dades i casos reals de la teva empresa",
+        "Ajustos tècnics per assegurar rendiment i fiabilitat",
       ],
-      duration: "2-6 setmanes",
-      result: "Primeres hores estalviades i prova de valor.",
+      duration: "2-4 setmanes",
+      result: "Sistema implementat i llest per operar.",
     },
     {
-      title: "Sistema IA intern",
+      title: "Documentació i manteniment",
       objective:
-        "Convertir les peces soltes en un sistema integrat i adoptat per l'equip.",
+        "Transferir el coneixement, acompanyar l'equip i mantenir el sistema perquè continuï funcionant bé.",
       activities: [
-        "Integració profunda amb els teus processos",
-        "Formació pràctica de l'equip",
-        "Documentació i bones pràctiques",
-        "Optimització de models i costos",
-      ],
-      duration: "1-3 mesos",
-      result: "Adopció real en el dia a dia.",
-    },
-    {
-      title: "Escalat i millora contínua",
-      objective:
-        "Fer que la IA evolucioni amb tu i continuï generant retorn en el temps.",
-      activities: [
-        "Nous agents i automatitzacions",
-        "Monitoratge i control de costos",
-        "Manteniment i millores contínues",
-        "Reporting d'impacte periòdic",
+        "Documentació clara del sistema i els seus processos",
+        "Formació pràctica per a l'equip",
+        "Monitoratge, suport i resolució d'incidències",
+        "Manteniment i millores segons l'ús real",
       ],
       duration: "Continu",
-      result: "La IA com a avantatge operatiu continu.",
+      result: "Sistema documentat, mantingut i transferible.",
     },
   ],
   principles: {
@@ -214,13 +188,13 @@ const en: ProcessContent = {
   meta: {
     title: "How we work · Phased AI method",
     description:
-      "A phased method to implement AI with judgement: audit, quick wins, internal system and scaling. Each phase with a tangible, measurable result.",
+      "A three-phase method to implement AI with judgement: audit, system implementation, and documentation with maintenance.",
   },
   hero: {
     eyebrow: "How we work",
-    title: "A phased method to implement AI without unnecessary risk",
+    title: "Three phases to implement AI without unnecessary risk",
     intro:
-      "We move step by step, measuring impact at each phase. You prove value before investing more and never move blindly.",
+      "First we understand what your company needs, then we implement the system, and finally we leave documentation, support and maintenance so it works day to day.",
   },
   labels: {
     objective: "Objective",
@@ -239,47 +213,34 @@ const en: ProcessContent = {
         "Assessment of the tools you already use",
         "Savings estimate and ROI prioritisation",
       ],
-      duration: "1-3 weeks",
+      duration: "2-3 days",
       result: "A clear, prioritised roadmap.",
     },
     {
-      title: "Quick-win implementation",
+      title: "System implementation",
       objective:
-        "Deliver value fast with automations and agents on high-impact processes.",
+        "Build and integrate the AI or automation solution that best fits what your company needs.",
       activities: [
-        "Selection of the highest-return cases",
-        "Build and integration with your systems",
-        "Testing with real data and tuning",
-        "Measurement of hours saved",
+        "System design based on the roadmap",
+        "Build of agents, automations and integrations",
+        "Testing with real company data and use cases",
+        "Technical tuning for performance and reliability",
       ],
-      duration: "2-6 weeks",
-      result: "First hours saved and proof of value.",
+      duration: "2-4 weeks",
+      result: "System implemented and ready to operate.",
     },
     {
-      title: "Internal AI system",
+      title: "Documentation & maintenance",
       objective:
-        "Turn scattered pieces into an integrated system adopted by the team.",
+        "Transfer knowledge, support the team and maintain the system so it keeps working well.",
       activities: [
-        "Deep integration with your processes",
-        "Hands-on team training",
-        "Documentation and best practices",
-        "Model and cost optimisation",
-      ],
-      duration: "1-3 months",
-      result: "Real day-to-day adoption.",
-    },
-    {
-      title: "Scaling & continuous improvement",
-      objective:
-        "Make AI evolve with you and keep delivering return over time.",
-      activities: [
-        "New agents and automations",
-        "Monitoring and cost control",
-        "Maintenance and continuous improvements",
-        "Periodic impact reporting",
+        "Clear documentation of the system and its processes",
+        "Hands-on training for the team",
+        "Monitoring, support and issue resolution",
+        "Maintenance and improvements based on real usage",
       ],
       duration: "Ongoing",
-      result: "AI as an ongoing operational advantage.",
+      result: "Documented, maintained and transferable system.",
     },
   ],
   principles: {

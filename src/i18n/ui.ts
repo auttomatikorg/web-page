@@ -14,8 +14,8 @@ export const ui = {
     "nav.contact": "Contacto",
 
     "cta.book": "Reserva tu auditoría",
-    "cta.bookFree": "Reserva tu auditoría IA gratuita",
-    "cta.bookShort": "Reservar auditoría",
+    "cta.bookFree": "Reserva auditoría gratuita",
+    "cta.bookShort": "Contacta con nuestro equipo",
     "cta.whatsapp": "Escríbenos por WhatsApp",
     "cta.seeProcess": "Cómo trabajamos",
     "cta.seeServices": "Ver servicios",
@@ -50,8 +50,8 @@ export const ui = {
     "nav.contact": "Contacte",
 
     "cta.book": "Reserva la teva auditoria",
-    "cta.bookFree": "Reserva la teva auditoria d'IA gratuïta",
-    "cta.bookShort": "Reservar auditoria",
+    "cta.bookFree": "Reserva auditoria gratuïta",
+    "cta.bookShort": "Contacta amb el nostre equip",
     "cta.whatsapp": "Escriu-nos per WhatsApp",
     "cta.seeProcess": "Com treballem",
     "cta.seeServices": "Veure serveis",
@@ -86,8 +86,8 @@ export const ui = {
     "nav.contact": "Contact",
 
     "cta.book": "Book your audit",
-    "cta.bookFree": "Book your free AI audit",
-    "cta.bookShort": "Book an audit",
+    "cta.bookFree": "Book a free audit",
+    "cta.bookShort": "Contact our team",
     "cta.whatsapp": "Message us on WhatsApp",
     "cta.seeProcess": "How we work",
     "cta.seeServices": "See services",

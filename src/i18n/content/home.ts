@@ -69,11 +69,11 @@ const es: HomeContent = {
       "Consultoría e implementación de IA y automatización para pymes. Auditamos tus procesos, construimos agentes y automatizaciones útiles y formamos a tu equipo para que escales sin disparar costes.",
   },
   hero: {
-    eyebrow: "Consultoría e implementación de IA para pymes",
+    eyebrow: "Implementación de procesos escalables",
     title: "Deja de probar IA. Empieza a implementarla.",
     subtitle:
-      "Ayudamos a pymes con procesos repetitivos a automatizar operaciones, crear agentes IA y formar a sus equipos para crecer sin disparar costes ni caer en experimentos que no generan retorno.",
-    primaryCta: "Reserva tu auditoría IA gratuita",
+      "Ayudamos a pymes con procesos repetitivos a automatizar operaciones sin disparar costes ni caer en experimentos que no generan retorno.",
+    primaryCta: "Reserva tu auditoría gratuita",
     secondaryCta: "Cómo trabajamos",
     trustNote:
       "Sin compromiso · Empezamos por tus procesos y tu ROI, no por el software.",
@@ -82,7 +82,7 @@ const es: HomeContent = {
     eyebrow: "Te suena, ¿verdad?",
     title: "Sabes que la IA importa, pero no sabes cómo aterrizarla sin perder dinero",
     intro:
-      "No te falta trabajo. Te sobran tareas repetitivas. Y entre el ruido de herramientas, demos y proveedores, es difícil saber qué tiene sentido de verdad.",
+      "",
     thoughts: [
       "Sé que tenemos que hacer algo con IA, pero no sé por dónde empezar.",
       "No quiero quedarme atrás, pero tampoco quiero tirar el dinero.",
@@ -92,7 +92,7 @@ const es: HomeContent = {
       "Tengo miedo de invertir tarde, pero también de invertir mal.",
     ],
     closing:
-      "Ese conflicto entre urgencia y prudencia es normal. Nuestro trabajo es resolverlo con criterio.",
+      "",
   },
   differentiators: {
     eyebrow: "Nuestro enfoque",
@@ -158,29 +158,24 @@ const es: HomeContent = {
   },
   process: {
     eyebrow: "Cómo trabajamos",
-    title: "Un método por fases para reducir el riesgo",
+    title: "Tres fases para implementar IA con criterio",
     intro:
-      "Avanzamos paso a paso. Cada fase tiene un resultado tangible, así pruebas el valor antes de invertir más.",
+      "Auditamos lo que necesitas, implementamos el sistema y te dejamos documentación y mantenimiento para que funcione en el día a día.",
     phases: [
       {
         title: "Auditoría IA operativa",
-        text: "Mapeo de procesos, detección de tareas repetitivas, evaluación de herramientas actuales y estimación de ahorro.",
+        text: "Analizamos tu empresa, tus procesos, tus herramientas y tus cuellos de botella para detectar qué sistema de IA tiene sentido implementar.",
         result: "Hoja de ruta clara y priorizada.",
       },
       {
-        title: "Implementación de quick wins",
-        text: "Automatizaciones y agentes concretos en los procesos de mayor impacto, en semanas, no en meses.",
-        result: "Primeras horas ahorradas y prueba de valor.",
+        title: "Implementación del sistema",
+        text: "Construimos agentes, automatizaciones e integraciones conectadas a tu operativa real, probadas con casos y datos de tu empresa.",
+        result: "Sistema implementado y listo para operar.",
       },
       {
-        title: "Sistema IA interno",
-        text: "Integración más profunda con tus procesos, formación del equipo, documentación y optimización.",
-        result: "Adopción real en el día a día.",
-      },
-      {
-        title: "Escalado y mejora continua",
-        text: "Nuevos agentes, control de costes, mantenimiento, reporting y evolución del sistema.",
-        result: "La IA como ventaja operativa continua.",
+        title: "Documentación y mantenimiento",
+        text: "Documentamos el sistema, formamos al equipo y mantenemos la solución para que siga funcionando y mejorando con el uso real.",
+        result: "Sistema documentado, mantenido y transferible.",
       },
     ],
     cta: "Ver el método en detalle",
@@ -214,11 +209,11 @@ const es: HomeContent = {
     ],
   },
   stats: {
-    title: "Pensado para el negocio, no para la foto",
+    title: "Pensado para el negocio",
     items: [
-      { value: "20-250", label: "empleados: nuestro foco son las pymes en crecimiento" },
-      { value: "4 fases", label: "un camino claro, de la auditoría al escalado" },
-      { value: "Semanas", label: "para los primeros quick wins, no meses" },
+      { value: "3-50", label: "empleados: nuestro foco son las pymes en crecimiento" },
+      { value: "3 fases", label: "un camino claro: auditoría, implementación y mantenimiento" },
+      { value: "Semanas", label: "para tener el primer sistema operativo, no meses" },
       { value: "100%", label: "documentado y transferible a tu equipo" },
     ],
     note: "Las métricas de cada proyecto las fijamos en la auditoría inicial.",
@@ -247,17 +242,13 @@ const es: HomeContent = {
       {
         q: "No sabemos si funcionará en nuestro sector.",
         a: "Por eso auditamos procesos concretos antes de prometer nada. No hay solución genérica: hay tu operativa y dónde tiene sentido aplicar IA.",
-      },
-      {
-        q: "No queremos depender de una caja negra.",
-        a: "Entregamos documentación, trazabilidad y formación. El conocimiento se queda en tu empresa.",
-      },
+      }
     ],
   },
   finalCta: {
-    title: "Empieza por una auditoría, no por una factura",
-    text: "Una conversación para entender tu operativa y decirte, con criterio, qué tiene sentido automatizar primero. Sin humo y sin compromiso.",
-    primaryCta: "Reserva tu auditoría IA gratuita",
+    title: "Reserva una auditoría con nuestro equipo",
+    text: "Una conversación para entender tu operativa y decirte, con criterio, qué tiene sentido automatizar primero.",
+    primaryCta: "Reserva auditoría gratuita",
     secondaryCta: "Escríbenos por WhatsApp",
   },
 };
@@ -269,11 +260,11 @@ const ca: HomeContent = {
       "Consultoria i implementació d'IA i automatització per a pimes. Auditem els teus processos, construïm agents i automatitzacions útils i formem el teu equip perquè escalis sense disparar costos.",
   },
   hero: {
-    eyebrow: "Consultoria i implementació d'IA per a pimes",
+    eyebrow: "Implementació de processos escalables",
     title: "Deixa de provar IA. Comença a implementar-la.",
     subtitle:
-      "Ajudem pimes amb processos repetitius a automatitzar operacions, crear agents IA i formar els seus equips per créixer sense disparar costos ni caure en experiments que no generen retorn.",
-    primaryCta: "Reserva la teva auditoria d'IA gratuïta",
+      "Ajudem pimes amb processos repetitius a automatitzar operacions sense disparar costos ni caure en experiments que no generen retorn.",
+    primaryCta: "Reserva la teva auditoria gratuïta",
     secondaryCta: "Com treballem",
     trustNote:
       "Sense compromís · Comencem pels teus processos i el teu ROI, no pel programari.",
@@ -282,7 +273,7 @@ const ca: HomeContent = {
     eyebrow: "Et sona, oi?",
     title: "Saps que la IA importa, però no saps com aterrar-la sense perdre diners",
     intro:
-      "No et falta feina. Et sobren tasques repetitives. I enmig del soroll d'eines, demos i proveïdors, és difícil saber què té sentit de debò.",
+      "",
     thoughts: [
       "Sé que hem de fer alguna cosa amb IA, però no sé per on començar.",
       "No vull quedar-me enrere, però tampoc vull llençar els diners.",
@@ -292,7 +283,7 @@ const ca: HomeContent = {
       "Tinc por d'invertir tard, però també d'invertir malament.",
     ],
     closing:
-      "Aquest conflicte entre urgència i prudència és normal. La nostra feina és resoldre'l amb criteri.",
+      "",
   },
   differentiators: {
     eyebrow: "El nostre enfocament",
@@ -358,29 +349,24 @@ const ca: HomeContent = {
   },
   process: {
     eyebrow: "Com treballem",
-    title: "Un mètode per fases per reduir el risc",
+    title: "Tres fases per implementar IA amb criteri",
     intro:
-      "Avancem pas a pas. Cada fase té un resultat tangible, així proves el valor abans d'invertir més.",
+      "Auditem el que necessites, implementem el sistema i et deixem documentació i manteniment perquè funcioni en el dia a dia.",
     phases: [
       {
         title: "Auditoria IA operativa",
-        text: "Mapeig de processos, detecció de tasques repetitives, avaluació d'eines actuals i estimació d'estalvi.",
+        text: "Analitzem la teva empresa, els teus processos, les teves eines i els teus colls d'ampolla per detectar quin sistema d'IA té sentit implementar.",
         result: "Full de ruta clar i prioritzat.",
       },
       {
-        title: "Implementació de quick wins",
-        text: "Automatitzacions i agents concrets en els processos de més impacte, en setmanes, no en mesos.",
-        result: "Primeres hores estalviades i prova de valor.",
+        title: "Implementació del sistema",
+        text: "Construïm agents, automatitzacions i integracions connectades a la teva operativa real, provades amb casos i dades de la teva empresa.",
+        result: "Sistema implementat i llest per operar.",
       },
       {
-        title: "Sistema IA intern",
-        text: "Integració més profunda amb els teus processos, formació de l'equip, documentació i optimització.",
-        result: "Adopció real en el dia a dia.",
-      },
-      {
-        title: "Escalat i millora contínua",
-        text: "Nous agents, control de costos, manteniment, reporting i evolució del sistema.",
-        result: "La IA com a avantatge operatiu continu.",
+        title: "Documentació i manteniment",
+        text: "Documentem el sistema, formem l'equip i mantenim la solució perquè continuï funcionant i millorant amb l'ús real.",
+        result: "Sistema documentat, mantingut i transferible.",
       },
     ],
     cta: "Veure el mètode en detall",
@@ -414,11 +400,11 @@ const ca: HomeContent = {
     ],
   },
   stats: {
-    title: "Pensat per al negoci, no per a la foto",
+    title: "Pensat per al negoci",
     items: [
-      { value: "20-250", label: "empleats: el nostre focus són les pimes en creixement" },
-      { value: "4 fases", label: "un camí clar, de l'auditoria a l'escalat" },
-      { value: "Setmanes", label: "per als primers quick wins, no mesos" },
+      { value: "3-50", label: "empleats: el nostre focus són les pimes en creixement" },
+      { value: "3 fases", label: "un camí clar: auditoria, implementació i manteniment" },
+      { value: "Setmanes", label: "per tenir el primer sistema operatiu, no mesos" },
       { value: "100%", label: "documentat i transferible al teu equip" },
     ],
     note: "Les mètriques de cada projecte les fixem a l'auditoria inicial.",
@@ -448,16 +434,12 @@ const ca: HomeContent = {
         q: "No sabem si funcionarà en el nostre sector.",
         a: "Per això auditem processos concrets abans de prometre res. No hi ha solució genèrica: hi ha la teva operativa i on té sentit aplicar IA.",
       },
-      {
-        q: "No volem dependre d'una caixa negra.",
-        a: "Lliurem documentació, traçabilitat i formació. El coneixement es queda a la teva empresa.",
-      },
     ],
   },
   finalCta: {
-    title: "Comença per una auditoria, no per una factura",
-    text: "Una conversa per entendre la teva operativa i dir-te, amb criteri, què té sentit automatitzar primer. Sense fum i sense compromís.",
-    primaryCta: "Reserva la teva auditoria d'IA gratuïta",
+    title: "Reserva una auditoria amb el nostre equip",
+    text: "Una conversa per entendre la teva operativa i dir-te, amb criteri, què té sentit automatitzar primer.",
+    primaryCta: "Reserva auditoria gratuïta",
     secondaryCta: "Escriu-nos per WhatsApp",
   },
 };
@@ -469,11 +451,11 @@ const en: HomeContent = {
       "AI and automation consulting and implementation for SMEs. We audit your processes, build useful agents and automations, and train your team so you scale without ballooning costs.",
   },
   hero: {
-    eyebrow: "AI consulting & implementation for SMEs",
+    eyebrow: "Scalable process implementation",
     title: "Stop testing AI. Start implementing it.",
     subtitle:
-      "We help SMEs with repetitive processes automate operations, build AI agents and train their teams to grow without ballooning costs or falling into experiments that deliver no return.",
-    primaryCta: "Book your free AI audit",
+      "We help SMEs with repetitive processes automate operations without ballooning costs or falling into experiments that deliver no return.",
+    primaryCta: "Book your free audit",
     secondaryCta: "How we work",
     trustNote:
       "No commitment · We start with your processes and your ROI, not the software.",
@@ -482,7 +464,7 @@ const en: HomeContent = {
     eyebrow: "Sound familiar?",
     title: "You know AI matters, but not how to land it without wasting money",
     intro:
-      "You're not short of work. You're drowning in repetitive tasks. And amid the noise of tools, demos and vendors, it's hard to know what actually makes sense.",
+      "",
     thoughts: [
       "I know we need to do something with AI, but I don't know where to start.",
       "I don't want to fall behind, but I don't want to waste money either.",
@@ -492,7 +474,7 @@ const en: HomeContent = {
       "I'm afraid of investing too late, but also of investing badly.",
     ],
     closing:
-      "That tension between urgency and caution is normal. Our job is to resolve it with judgement.",
+      "",
   },
   differentiators: {
     eyebrow: "Our approach",
@@ -558,29 +540,24 @@ const en: HomeContent = {
   },
   process: {
     eyebrow: "How we work",
-    title: "A phased method to reduce risk",
+    title: "Three phases to implement AI with judgement",
     intro:
-      "We move step by step. Each phase delivers a tangible result, so you prove value before investing more.",
+      "We audit what you need, implement the system, and leave documentation and maintenance so it works day to day.",
     phases: [
       {
         title: "Operational AI audit",
-        text: "Process mapping, repetitive-task detection, assessment of current tools and savings estimate.",
+        text: "We analyse your company, processes, tools and bottlenecks to identify which AI system makes sense to implement.",
         result: "A clear, prioritised roadmap.",
       },
       {
-        title: "Quick-win implementation",
-        text: "Concrete automations and agents on the highest-impact processes, in weeks, not months.",
-        result: "First hours saved and proof of value.",
+        title: "System implementation",
+        text: "We build agents, automations and integrations connected to your real operations, tested with your company's use cases and data.",
+        result: "System implemented and ready to operate.",
       },
       {
-        title: "Internal AI system",
-        text: "Deeper integration with your processes, team training, documentation and optimisation.",
-        result: "Real day-to-day adoption.",
-      },
-      {
-        title: "Scaling & continuous improvement",
-        text: "New agents, cost control, maintenance, reporting and system evolution.",
-        result: "AI as an ongoing operational advantage.",
+        title: "Documentation & maintenance",
+        text: "We document the system, train the team and maintain the solution so it keeps working and improving with real usage.",
+        result: "Documented, maintained and transferable system.",
       },
     ],
     cta: "See the method in detail",
@@ -614,11 +591,11 @@ const en: HomeContent = {
     ],
   },
   stats: {
-    title: "Built for the business, not for the photo",
+    title: "Built for the business",
     items: [
-      { value: "20-250", label: "employees: our focus is growing SMEs" },
-      { value: "4 phases", label: "a clear path, from audit to scaling" },
-      { value: "Weeks", label: "for the first quick wins, not months" },
+      { value: "3-50", label: "employees: our focus is growing SMEs" },
+      { value: "3 phases", label: "a clear path: audit, implementation and maintenance" },
+      { value: "Weeks", label: "to get the first operating system, not months" },
       { value: "100%", label: "documented and transferable to your team" },
     ],
     note: "We set each project's metrics during the initial audit.",
@@ -648,16 +625,12 @@ const en: HomeContent = {
         q: "We're not sure it'll work in our sector.",
         a: "That's why we audit concrete processes before promising anything. There's no generic solution: there's your operation and where AI makes sense.",
       },
-      {
-        q: "We don't want to depend on a black box.",
-        a: "We deliver documentation, traceability and training. The knowledge stays in your company.",
-      },
     ],
   },
   finalCta: {
-    title: "Start with an audit, not an invoice",
-    text: "A conversation to understand your operations and tell you, with judgement, what makes sense to automate first. No hype, no commitment.",
-    primaryCta: "Book your free AI audit",
+    title: "Book an audit with our team",
+    text: "A conversation to understand your operations and tell you, with judgement, what makes sense to automate first.",
+    primaryCta: "Book a free audit",
     secondaryCta: "Message us on WhatsApp",
   },
 };

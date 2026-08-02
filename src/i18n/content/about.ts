@@ -19,6 +19,9 @@ export interface AboutContent {
 
 const LINKEDIN_JORDI = "https://www.linkedin.com/in/jordigarciaiserra/";
 const LINKEDIN_CARLA = "https://www.linkedin.com/in/carlalopezzz/";
+const LINKEDIN_MARC = "https://www.linkedin.com/in/marc-font-olle-";
+const LINKEDIN_JULIAN =
+  "https://www.linkedin.com/in/julian-ciprian-65b447179?utm_source=share_via&utm_content=profile&utm_medium=member_ios";
 
 const es: AboutContent = {
   meta: {
@@ -28,7 +31,7 @@ const es: AboutContent = {
   },
   hero: {
     eyebrow: "Nosotros",
-    title: "IA operativa con criterio, no tecnología por moda",
+    title: "Un equipo humano a la altura.",
     intro:
       "Nacimos para resolver un problema concreto: las pymes saben que la IA importa, pero el mercado está lleno de demos, chatbots y promesas que no se traducen en resultados.",
   },
@@ -47,35 +50,67 @@ const es: AboutContent = {
     members: [
       {
         name: "Jordi Garcia",
-        role: "Cofundador · Asesor financiero · Gestor de subvenciones",
+        role: "Asesor financiero · Estrategia de negocio",
         bio: "Liderazgo fundador y expertise en financiación pública: combina conocimiento financiero y capacidad formativa para dar estabilidad y trazabilidad al proyecto.",
         highlights: [
           {
-            stat: "Desde 2018",
-            text: "fundador y administrador único de Innovalaus y responsable legal de la compañía.",
+            stat: "+10M€ captados",
+            text: "en financiación para clientes, aportando criterio financiero para priorizar proyectos de IA con retorno real.",
           },
           {
-            stat: "Mentor",
-            text: "de startups del Logistics 4.0 Incubator (Consorci de la Zona Franca de Barcelona y Fundación INCYDE) en estrategia de subvenciones.",
+            stat: "Estrategia financiera",
+            text: "mentor de startups en Logistics 4.0 Incubator, especializado en convertir subvenciones y financiación en planes ejecutables.",
           },
         ],
         linkedin: LINKEDIN_JORDI,
       },
       {
         name: "Carla López",
-        role: "Cofundadora · Business Developer · IA y Automatización",
-        bio: "Experiencia práctica en IA aplicada y automatización, con capacidad de divulgación y de generar comunidad en torno a la IA.",
+        role: "Business Developer · IA & Automation",
+        bio: "Especialista en IA aplicada, automatización y desarrollo de negocio. Combina visión comercial, criterio técnico y capacidad de divulgación.",
         highlights: [
           {
-            stat: "+3 años",
-            text: "diseñando e implementando soluciones de IA y automatización orientadas a la eficiencia operativa.",
+            stat: "RPA avanzada",
+            text: "certificada en UiPath Advanced RPA Developer, Robocorp Level III Python y Make Advanced para automatizaciones de nivel profesional.",
           },
           {
-            stat: "2.200+ seguidores",
-            text: "en LinkedIn divulgando sobre automatización, agentes IA y productividad.",
+            stat: "IA aplicada",
+            text: "formada en Model Context Protocol avanzado y Prompt Engineering for Developers para diseñar agentes, flujos y sistemas con criterio técnico.",
           },
         ],
         linkedin: LINKEDIN_CARLA,
+      },
+      {
+        name: "Marc Font",
+        role: "Developer · DevOps & Automation",
+        bio: "Perfil técnico orientado a construir automatizaciones estables, integrar sistemas y convertir procesos operativos en flujos fiables y mantenibles.",
+        highlights: [
+          {
+            stat: "SaaS Automation",
+            text: "especialista en automatización SaaS y desarrollo UiPath, preparado para conectar herramientas y eliminar trabajo manual.",
+          },
+          {
+            stat: "DevOps Engineer",
+            text: "perfil developer con foco DevOps para crear automatizaciones conectadas, mantenibles y preparadas para el día a día.",
+          },
+        ],
+        linkedin: LINKEDIN_MARC,
+      },
+      {
+        name: "Julian Ciprian",
+        role: "Developer · IA & Automation",
+        bio: "Desarrollador especializado en IA aplicada y automatización, enfocado en crear soluciones prácticas que reduzcan trabajo manual y mejoren la eficiencia.",
+        highlights: [
+          {
+            stat: "Experto en IA",
+            text: "especialista en inteligencia artificial aplicada, capaz de diseñar soluciones inteligentes para automatizar procesos.",
+          },
+          {
+            stat: "Big Data + BI",
+            text: "máster en Big Data y Business Intelligence, con formación en Power BI, bases de datos relacionales y ciencia de datos aplicada.",
+          },
+        ],
+        linkedin: LINKEDIN_JULIAN,
       },
     ],
   },
@@ -89,7 +124,7 @@ const ca: AboutContent = {
   },
   hero: {
     eyebrow: "Nosaltres",
-    title: "IA operativa amb criteri, no tecnologia per moda",
+    title: "Un equip humà a l'altura.",
     intro:
       "Vam néixer per resoldre un problema concret: les pimes saben que la IA importa, però el mercat és ple de demos, chatbots i promeses que no es tradueixen en resultats.",
   },
@@ -108,35 +143,67 @@ const ca: AboutContent = {
     members: [
       {
         name: "Jordi Garcia",
-        role: "Cofundador · Assessor financer · Gestor de subvencions",
+        role: "Assessor financer · Estratègia de negoci",
         bio: "Lideratge fundador i expertise en finançament públic: combina coneixement financer i capacitat formativa per donar estabilitat i traçabilitat al projecte.",
         highlights: [
           {
-            stat: "Des del 2018",
-            text: "fundador i administrador únic d'Innovalaus i responsable legal de la companyia.",
+            stat: "+10M€ captats",
+            text: "en finançament per a clients, aportant criteri financer per prioritzar projectes d'IA amb retorn real.",
           },
           {
-            stat: "Mentor",
-            text: "de startups del Logistics 4.0 Incubator (Consorci de la Zona Franca de Barcelona i Fundació INCYDE) en estratègia de subvencions.",
+            stat: "Estratègia financera",
+            text: "mentor de startups al Logistics 4.0 Incubator, especialitzat a convertir subvencions i finançament en plans executables.",
           },
         ],
         linkedin: LINKEDIN_JORDI,
       },
       {
         name: "Carla López",
-        role: "Cofundadora · Business Developer · IA i Automatització",
-        bio: "Experiència pràctica en IA aplicada i automatització, amb capacitat de divulgació i de generar comunitat al voltant de la IA.",
+        role: "Business Developer · IA & Automation",
+        bio: "Especialista en IA aplicada, automatització i desenvolupament de negoci. Combina visió comercial, criteri tècnic i capacitat de divulgació.",
         highlights: [
           {
-            stat: "+3 anys",
-            text: "dissenyant i implementant solucions d'IA i automatització orientades a l'eficiència operativa.",
+            stat: "RPA avançada",
+            text: "certificada en UiPath Advanced RPA Developer, Robocorp Level III Python i Make Advanced per a automatitzacions de nivell professional.",
           },
           {
-            stat: "2.200+ seguidors",
-            text: "a LinkedIn divulgant sobre automatització, agents IA i productivitat.",
+            stat: "IA aplicada",
+            text: "formada en Model Context Protocol avançat i Prompt Engineering for Developers per dissenyar agents, fluxos i sistemes amb criteri tècnic.",
           },
         ],
         linkedin: LINKEDIN_CARLA,
+      },
+      {
+        name: "Marc Font",
+        role: "Developer · DevOps & Automation",
+        bio: "Perfil tècnic orientat a construir automatitzacions estables, integrar sistemes i convertir processos operatius en fluxos fiables i mantenibles.",
+        highlights: [
+          {
+            stat: "SaaS Automation",
+            text: "especialista en automatització SaaS i desenvolupament UiPath, preparat per connectar eines i eliminar feina manual.",
+          },
+          {
+            stat: "DevOps Engineer",
+            text: "perfil developer amb focus DevOps per crear automatitzacions connectades, mantenibles i preparades per al dia a dia.",
+          },
+        ],
+        linkedin: LINKEDIN_MARC,
+      },
+      {
+        name: "Julian Ciprian",
+        role: "Developer · IA & Automation",
+        bio: "Desenvolupador especialitzat en IA aplicada i automatització, enfocat a crear solucions pràctiques que redueixin feina manual i millorin l'eficiència.",
+        highlights: [
+          {
+            stat: "Expert en IA",
+            text: "especialista en intel·ligència artificial aplicada, capaç de dissenyar solucions intel·ligents per automatitzar processos.",
+          },
+          {
+            stat: "Big Data + BI",
+            text: "màster en Big Data i Business Intelligence, amb formació en Power BI, bases de dades relacionals i ciència de dades aplicada.",
+          },
+        ],
+        linkedin: LINKEDIN_JULIAN,
       },
     ],
   },
@@ -150,7 +217,7 @@ const en: AboutContent = {
   },
   hero: {
     eyebrow: "About",
-    title: "Operational AI with judgement, not technology for fashion",
+    title: "A human team up to the task.",
     intro:
       "We were born to solve a concrete problem: SMEs know AI matters, but the market is full of demos, chatbots and promises that don't turn into results.",
   },
@@ -169,35 +236,67 @@ const en: AboutContent = {
     members: [
       {
         name: "Jordi Garcia",
-        role: "Co-founder · Finance Advisor · Grant Manager",
+        role: "Finance Advisor · Business Strategy",
         bio: "Founder leadership and public-funding expertise: combines financial knowledge with training ability to give the project stability and traceability.",
         highlights: [
           {
-            stat: "Since 2018",
-            text: "founder and sole director of Innovalaus and the company's legal lead.",
+            stat: "€10M+ secured",
+            text: "in funding for clients, bringing financial judgement to prioritise AI projects with real return.",
           },
           {
-            stat: "Mentor",
-            text: "to startups at the Logistics 4.0 Incubator (Consorci de la Zona Franca de Barcelona and Fundación INCYDE) on grant strategy.",
+            stat: "Financial strategy",
+            text: "startup mentor at Logistics 4.0 Incubator, specialised in turning grants and funding into executable plans.",
           },
         ],
         linkedin: LINKEDIN_JORDI,
       },
       {
         name: "Carla López",
-        role: "Co-founder · Business Developer · AI & Automation",
-        bio: "Hands-on experience in applied AI and automation, with the ability to share knowledge and build community around AI.",
+        role: "Business Developer · AI & Automation",
+        bio: "Specialist in applied AI, automation and business development. Combines commercial vision, technical judgement and communication skills.",
         highlights: [
           {
-            stat: "3+ years",
-            text: "designing and implementing AI and automation solutions focused on operational efficiency.",
+            stat: "Advanced RPA",
+            text: "certified in UiPath Advanced RPA Developer, Robocorp Level III Python and Make Advanced for professional-grade automations.",
           },
           {
-            stat: "2,200+ followers",
-            text: "on LinkedIn sharing about automation, AI agents and productivity.",
+            stat: "Applied AI",
+            text: "trained in advanced Model Context Protocol and Prompt Engineering for Developers to design agents, workflows and systems with technical judgement.",
           },
         ],
         linkedin: LINKEDIN_CARLA,
+      },
+      {
+        name: "Marc Font",
+        role: "Developer · DevOps & Automation",
+        bio: "Technical profile focused on building stable automations, integrating systems and turning operational processes into reliable, maintainable workflows.",
+        highlights: [
+          {
+            stat: "SaaS Automation",
+            text: "specialist in SaaS automation and UiPath development, ready to connect tools and remove manual work.",
+          },
+          {
+            stat: "DevOps Engineer",
+            text: "developer profile with a DevOps mindset for connected, maintainable automations built for day-to-day work.",
+          },
+        ],
+        linkedin: LINKEDIN_MARC,
+      },
+      {
+        name: "Julian Ciprian",
+        role: "Developer · AI & Automation",
+        bio: "Developer specialised in applied AI and automation, focused on creating practical solutions that reduce manual work and improve efficiency.",
+        highlights: [
+          {
+            stat: "AI Expert",
+            text: "specialist in applied artificial intelligence, able to design intelligent solutions that automate processes.",
+          },
+          {
+            stat: "Big Data + BI",
+            text: "master's degree in Big Data and Business Intelligence, with training in Power BI, relational databases and applied data science.",
+          },
+        ],
+        linkedin: LINKEDIN_JULIAN,
       },
     ],
   },

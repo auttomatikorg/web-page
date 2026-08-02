@@ -13,13 +13,13 @@ export const SITE = {
   url: "https://www.auttomatik.com",
 
   /** TODO: contact email */
-  email: "hola@auttomatik.com",
+  email: "info@auttomatik.com",
 
   /**
    * TODO: WhatsApp Business number in INTERNATIONAL format, digits only.
    * Example for Spain: "34600000000"
    */
-  whatsapp: "34600000000",
+  whatsapp: "34666212424",
 
   /**
    * TODO: Booking URL for the free audit call.
