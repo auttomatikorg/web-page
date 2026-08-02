@@ -25,7 +25,7 @@ const { provider, calLink, bookingUrl, calOrigin, calEmbedJs } = SITE.booking;
           data-cal-link={calLink}
           data-cal-origin={calOrigin}
           data-cal-embed={calEmbedJs}
-          style="width:100%;height:680px;overflow:hidden"
+          style="width:100%;min-height:720px"
         />
         <script is:inline>
           (function () {
@@ -77,6 +77,24 @@ const { provider, calLink, bookingUrl, calOrigin, calEmbedJs } = SITE.booking;
               layout: "month_view",
             });
             Cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
+
+            // Cal sets the iframe's own inline height once it knows the
+            // real content size. Our CSS min-height is only a loading
+            // placeholder; drop it as soon as that first real height
+            // lands so the wrapper never leaves extra empty space below
+            // the widget (or, if the placeholder was too short, so it
+            // stops clipping it).
+            var iframeCheckCount = 0;
+            var iframeCheckId = setInterval(function () {
+              iframeCheckCount++;
+              var iframe = el.querySelector("iframe");
+              if (iframe && iframe.style.height) {
+                el.style.minHeight = "0";
+                clearInterval(iframeCheckId);
+              } else if (iframeCheckCount > 100) {
+                clearInterval(iframeCheckId);
+              }
+            }, 100);
           })();
         </script>
       </>
@@ -120,22 +138,22 @@ const { provider, calLink, bookingUrl, calOrigin, calEmbedJs } = SITE.booking;
 </div>
 
 <style>
+  /*
+   * Cal.com's embed script measures the real booking widget content and
+   * sets the iframe's inline height itself (via postMessage). We only
+   * provide a min-height so there's no layout jump before that JS runs;
+   * we must NOT force a fixed height with !important here, since that
+   * would override Cal's own resize and cause cropped/oversized content.
+   */
   .cal-booking-shell :global(#cal-inline) {
     background: #111111;
+    min-height: 720px;
   }
 
   .cal-booking-shell :global(#cal-inline iframe) {
     display: block;
-    width: 100% !important;
-    height: 680px !important;
-    min-height: 680px !important;
+    width: 100%;
     border: 0;
     margin: 0;
-  }
-
-  @media (min-width: 1024px) {
-    .cal-booking-shell :global(#cal-inline) {
-      height: 468px !important;
-    }
   }
 </style>
