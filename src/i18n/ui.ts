@@ -1,115 +1,62 @@
 import type { Locale } from "@/config/site";
 
 /**
- * Shared UI strings (navigation, buttons, footer). Page body copy lives in the
- * per-page content modules under `src/i18n/content/`.
+ * Shared chrome strings: navigation, the skip link, the footer's legal links
+ * and the prefilled WhatsApp message. Everything a slide actually says lives
+ * in `src/i18n/content/slides.ts`.
  */
 export const ui = {
   es: {
     "nav.home": "Inicio",
-    "nav.services": "Servicios",
     "nav.process": "Cómo trabajamos",
-    "nav.cases": "Casos",
     "nav.about": "Nosotros",
     "nav.contact": "Contacto",
+    "nav.label": "Principal",
 
-    "cta.book": "Reserva tu auditoría",
-    "cta.bookFree": "Reserva auditoría gratuita",
-    "cta.bookShort": "Hablemos",
-    "cta.whatsapp": "Escríbenos por WhatsApp",
-    "cta.seeProcess": "Cómo trabajamos",
-    "cta.seeServices": "Ver servicios",
-
-    "common.menu": "Menú",
-    "common.close": "Cerrar",
-    "common.langLabel": "Idioma",
     "common.skip": "Saltar al contenido",
-    "common.phase": "Fase",
-    "common.result": "Resultado",
+    "common.cta": "Hablemos",
 
     "wa.default":
       "Hola, me gustaría saber cómo la IA puede ayudar a mi empresa.",
 
-    "footer.tagline": "Systems that move your business beyond busywork.",
-    "footer.nav": "Navegación",
-    "footer.legalTitle": "Legal",
-    "footer.contactTitle": "Contacto",
     "footer.legal": "Aviso legal",
     "footer.privacy": "Privacidad",
     "footer.cookies": "Cookies",
-    "footer.rights": "Todos los derechos reservados.",
-    "footer.builtWith": "IA operativa, implementada con criterio.",
   },
 
   ca: {
     "nav.home": "Inici",
-    "nav.services": "Serveis",
     "nav.process": "Com treballem",
-    "nav.cases": "Casos",
     "nav.about": "Nosaltres",
     "nav.contact": "Contacte",
+    "nav.label": "Principal",
 
-    "cta.book": "Reserva la teva auditoria",
-    "cta.bookFree": "Reserva auditoria gratuïta",
-    "cta.bookShort": "Parlem",
-    "cta.whatsapp": "Escriu-nos per WhatsApp",
-    "cta.seeProcess": "Com treballem",
-    "cta.seeServices": "Veure serveis",
-
-    "common.menu": "Menú",
-    "common.close": "Tancar",
-    "common.langLabel": "Idioma",
     "common.skip": "Salta al contingut",
-    "common.phase": "Fase",
-    "common.result": "Resultat",
+    "common.cta": "Parlem",
 
     "wa.default":
       "Hola, m'agradaria saber com la IA pot ajudar la meva empresa.",
 
-    "footer.tagline": "Systems that move your business beyond busywork.",
-    "footer.nav": "Navegació",
-    "footer.legalTitle": "Legal",
-    "footer.contactTitle": "Contacte",
     "footer.legal": "Avís legal",
     "footer.privacy": "Privacitat",
     "footer.cookies": "Cookies",
-    "footer.rights": "Tots els drets reservats.",
-    "footer.builtWith": "IA operativa, implementada amb criteri.",
   },
 
   en: {
     "nav.home": "Home",
-    "nav.services": "Services",
     "nav.process": "How we work",
-    "nav.cases": "Cases",
     "nav.about": "About",
     "nav.contact": "Contact",
+    "nav.label": "Main",
 
-    "cta.book": "Book your audit",
-    "cta.bookFree": "Book a free audit",
-    "cta.bookShort": "Let's talk",
-    "cta.whatsapp": "Message us on WhatsApp",
-    "cta.seeProcess": "How we work",
-    "cta.seeServices": "See services",
-
-    "common.menu": "Menu",
-    "common.close": "Close",
-    "common.langLabel": "Language",
     "common.skip": "Skip to content",
-    "common.phase": "Phase",
-    "common.result": "Outcome",
+    "common.cta": "Let's talk",
 
     "wa.default": "Hi, I'd like to know how AI can help my company.",
 
-    "footer.tagline": "Systems that move your business beyond busywork.",
-    "footer.nav": "Navigation",
-    "footer.legalTitle": "Legal",
-    "footer.contactTitle": "Contact",
     "footer.legal": "Legal notice",
     "footer.privacy": "Privacy",
     "footer.cookies": "Cookies",
-    "footer.rights": "All rights reserved.",
-    "footer.builtWith": "Operational AI, implemented with judgement.",
   },
 } as const;
 

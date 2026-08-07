@@ -1,0 +1,7 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">Tectum</title>
+  <rect width="1024" height="1024" fill="white"/>
+  <path d="M200 242L526 54V244L364 338V522L526 616V806L200 618V242Z" fill="#000"/>
+  <path d="M526 244L850 431V806L526 994V806L688 712V522L526 429V244Z" fill="#000"/>
+  <path d="M626 114L748 184V323L626 253V114Z" fill="#BF412F"/>
+</svg>

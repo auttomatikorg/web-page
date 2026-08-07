@@ -1,8 +1,5 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import PageHero from "@/components/sections/PageHero.astro";
-import Section from "@/components/Section.astro";
-import { Icon } from "astro-icon/components";
 import { SITE } from "@/config/site";
 import type { Locale } from "@/config/site";
 import { getLegal } from "@/i18n/content/legal";
@@ -42,34 +39,35 @@ const metaDescription = `${content.title} · ${SITE.name}`;
   description={metaDescription}
   lang={lang}
   pageKey={pageKey}
+  variant="doc"
   noindex={true}
 >
-  <PageHero eyebrow={SITE.name} title={content.title} />
+  {/* The only pages in the site that scroll — legal text cannot be
+      compressed into a slide without becoming useless. */}
+  <div class="doc mx-auto max-w-3xl">
+    <h1 class="text-statement font-medium">{content.title}</h1>
+    <p class="micro mt-5 text-ink-mute">
+      {content.updatedLabel}: {today}
+    </p>
 
-  <Section tone="white">
-    <div class="mx-auto max-w-3xl">
-      <p class="mb-2 text-sm text-ink-mute">
-        {content.updatedLabel}: {today}
-      </p>
-      <p
-        class="mb-10 flex items-start gap-3 rounded-2xl bg-primary/10 px-5 py-4 text-sm text-ink-soft"
-      >
-        <Icon name="lucide:info" class="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-        {content.reviewNote}
-      </p>
-
-      <div class="space-y-8">
-        {
-          content.sections.map((s) => (
+    <div class="divide-y divide-ink/12 border-t border-ink/12">
+      {
+        content.sections.map((s, i) => (
+          <section class="grid gap-x-8 gap-y-2 py-8 md:grid-cols-[3rem_minmax(0,1fr)]">
+            <p class="micro pt-1.5 text-primary-ink" aria-hidden="true">
+              {String(i + 1).padStart(2, "0")}
+            </p>
             <div>
-              <h2 class="text-xl font-semibold text-ink">{s.heading}</h2>
+              {/* The index column already numbers the clause, so drop any
+                  "1. " prefix the copy carries. */}
+              <h2>{s.heading.replace(/^\d+\.\s*/, "")}</h2>
               {s.body.map((p) => (
-                <p class="mt-3 leading-relaxed text-ink-soft">{fill(p)}</p>
+                <p class="mt-3">{fill(p)}</p>
               ))}
             </div>
-          ))
-        }
-      </div>
+          </section>
+        ))
+      }
     </div>
-  </Section>
+  </div>
 </BaseLayout>

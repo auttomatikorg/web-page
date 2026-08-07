@@ -1,19 +1,23 @@
 ---
-import "@fontsource-variable/space-grotesk";
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/500.css";
-import "@fontsource/inter/600.css";
-import "@fontsource/inter/700.css";
+import "@fontsource-variable/hanken-grotesk";
+import "@fontsource-variable/geist-mono";
 import "@/styles/global.css";
+
+import { ClientRouter } from "astro:transitions";
+import { Icon } from "astro-icon/components";
+import logo from "@/assets/logo.svg";
 
 import { SITE } from "@/config/site";
 import type { Locale } from "@/config/site";
-import { LANGUAGES, alternates, route, type PageKey } from "@/i18n/utils";
+import {
+  LANGUAGES,
+  LOCALES,
+  alternates,
+  route,
+  type PageKey,
+} from "@/i18n/utils";
 import { useTranslations } from "@/i18n/ui";
 
-import Header from "@/components/Header.astro";
-import Footer from "@/components/Footer.astro";
-import WhatsAppFloat from "@/components/WhatsAppFloat.astro";
 import CookieBanner from "@/components/CookieBanner.astro";
 
 interface Props {
@@ -21,6 +25,8 @@ interface Props {
   description: string;
   lang: Locale;
   pageKey: PageKey;
+  /** `slide` locks the viewport; `doc` scrolls (legal pages). */
+  variant?: "slide" | "doc";
   image?: string;
   noindex?: boolean;
 }
@@ -30,27 +36,53 @@ const {
   description,
   lang,
   pageKey,
+  variant = "slide",
   image = "/og/og-default.png",
   noindex = false,
 } = Astro.props;
 
+const t = useTranslations(lang);
+
 const htmlLang = LANGUAGES[lang].htmlLang;
 const canonical = new URL(route(pageKey, lang), SITE.url).href;
 const ogImage = new URL(image, SITE.url).href;
-const fullTitle =
-  pageKey === "home" ? title : `${title} · ${SITE.name}`;
+const fullTitle = pageKey === "home" ? title : `${title} · ${SITE.name}`;
 
 const hreflangs = alternates(pageKey).map((a) => ({
   hreflang: LANGUAGES[a.lang].htmlLang,
   href: new URL(a.path, SITE.url).href,
 }));
-const xDefault = new URL(route(pageKey, "es"), SITE.url).href;
+const xDefault = new URL(route("home", "es"), SITE.url).href;
+
+/* The four slides, in deck order — drives the nav, the counter and the
+   arrow-key paging. */
+const DECK = ["home", "process", "about", "contact"] as const satisfies readonly PageKey[];
+const NAV_LABEL = {
+  home: "nav.home",
+  process: "nav.process",
+  about: "nav.about",
+  contact: "nav.contact",
+} as const;
+
+const navItems = DECK.map((key) => ({
+  key,
+  href: route(key, lang),
+  label: t(NAV_LABEL[key]),
+}));
+const deckIndex = (DECK as readonly PageKey[]).indexOf(pageKey);
+const isSlide = variant === "slide";
+
+const prevHref = deckIndex > 0 ? route(DECK[deckIndex - 1], lang) : "";
+const nextHref =
+  deckIndex >= 0 && deckIndex < DECK.length - 1
+    ? route(DECK[deckIndex + 1], lang)
+    : "";
 
 const orgJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   name: SITE.name,
-  description: description,
+  description,
   url: SITE.url,
   email: SITE.email,
   image: ogImage,
@@ -74,7 +106,6 @@ const orgJsonLd = {
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
-    <!-- hreflang alternates -->
     {
       hreflangs.map((h) => (
         <link rel="alternate" hreflang={h.hreflang} href={h.href} />
@@ -82,7 +113,6 @@ const orgJsonLd = {
     }
     <link rel="alternate" hreflang="x-default" href={xDefault} />
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={fullTitle} />
@@ -91,57 +121,204 @@ const orgJsonLd = {
     <meta property="og:image" content={ogImage} />
     <meta property="og:locale" content={htmlLang.replace("-", "_")} />
 
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
-    <meta name="theme-color" content="#DE7007" />
+    <meta name="theme-color" content="#FFFFFF" />
 
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify(orgJsonLd)}
-    />
+    <script type="application/ld+json" set:html={JSON.stringify(orgJsonLd)} />
+
+    <ClientRouter />
   </head>
 
-  <body class="min-h-screen bg-cream-soft text-ink antialiased">
+  <body data-variant={variant} class="text-ink">
+    <!-- Warm field sits behind every slide and never re-paints between them -->
+    <div class="warm-field" aria-hidden="true" transition:persist></div>
+    <div class="warm-grain" aria-hidden="true" transition:persist></div>
+
     <a
-      href="#main"
-      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-white"
+      href="#stage"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-5 focus:top-5 focus:z-50 focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"
     >
-      {useTranslations(lang)("common.skip")}
+      {t("common.skip")}
     </a>
 
-    <Header lang={lang} pageKey={pageKey} />
+    <div class="slide" data-prev={prevHref} data-next={nextHref}>
+      <!-- Floating chrome: logo left, pill nav centre, language and CTA right -->
+      <header class="relative z-30 flex shrink-0 items-center justify-between gap-4">
+        <a
+          href={route("home", lang)}
+          class="shrink-0 rounded-md"
+          aria-label="Auttomatik"
+        >
+          <img src={logo.src} alt="Auttomatik" class="h-6 w-auto md:h-7" />
+        </a>
 
-    <main id="main">
-      <slot />
-    </main>
+        <nav
+          class="nav-pill scrollbar-none absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 rounded-full p-1.5 lg:flex"
+          aria-label={t("nav.label")}
+        >
+          {
+            navItems.map((item) => {
+              const active = item.key === pageKey;
+              return (
+                <a
+                  href={item.href}
+                  class={`nav-item px-5 py-2 text-[0.9375rem] whitespace-nowrap ${
+                    active ? "" : "text-ink-soft hover:text-ink"
+                  }`}
+                  aria-current={active ? "page" : undefined}
+                >
+                  {item.label}
+                </a>
+              );
+            })
+          }
+        </nav>
 
-    <Footer lang={lang} />
-    <WhatsAppFloat lang={lang} />
+        <div class="flex shrink-0 items-center gap-2">
+          <details class="language-select">
+            <summary class="top-pill language-pill" aria-label={LANGUAGES[lang].label}>
+              <span>{lang.toUpperCase()}</span>
+            </summary>
+            <div class="language-menu">
+              {
+                LOCALES.map((loc) => (
+                  <a
+                    href={route(pageKey, loc)}
+                    hreflang={loc}
+                    class={loc === lang ? "is-active" : ""}
+                    aria-current={loc === lang ? "true" : undefined}
+                  >
+                    {loc.toUpperCase()}
+                  </a>
+                ))
+              }
+            </div>
+          </details>
+          {
+            SITE.social.linkedin && (
+              <a
+                href={SITE.social.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="top-pill top-social"
+                aria-label="LinkedIn Auttomatik"
+              >
+                <Icon name="lucide:linkedin" class="h-4 w-4" aria-hidden="true" />
+              </a>
+            )
+          }
+          <a
+            href={SITE.booking.bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="top-pill top-cta"
+          >
+            <span>{t("common.cta")}</span>
+            <Icon name="lucide:arrow-up-right" class="h-4 w-4" aria-hidden="true" />
+          </a>
+        </div>
+      </header>
+
+      <!-- Mobile nav: the pill cannot hold four Spanish labels under 1024px,
+           so it becomes a scrollable row of chips. -->
+      <nav
+        class="nav-pill scrollbar-none z-30 -mx-1 flex shrink-0 items-center gap-1 overflow-x-auto rounded-full p-1.5 lg:hidden"
+        aria-label={t("nav.label")}
+      >
+        {
+          navItems.map((item) => {
+            const active = item.key === pageKey;
+            return (
+              <a
+                href={item.href}
+                class={`nav-item shrink-0 px-4 py-2 text-sm whitespace-nowrap ${
+                  active ? "" : "text-ink-soft"
+                }`}
+                aria-current={active ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            );
+          })
+        }
+      </nav>
+
+      <!-- Stage -->
+      <main
+        id="stage"
+        class={isSlide ? "slide-stage" : "relative z-10 flex-1 overflow-y-auto py-8"}
+      >
+        <slot />
+      </main>
+
+      <!-- Quiet footer -->
+      <footer
+        class="site-footer micro relative z-20 flex shrink-0 flex-wrap items-center justify-end gap-x-5 gap-y-2 text-ink-mute"
+      >
+        <span class="flex items-center gap-4">
+          <a href={route("legal", lang)} class="hover:text-primary-ink">
+            {t("footer.legal")}
+          </a>
+          <a href={route("privacy", lang)} class="hover:text-primary-ink">
+            {t("footer.privacy")}
+          </a>
+          <a href={route("cookies", lang)} class="hover:text-primary-ink">
+            {t("footer.cookies")}
+          </a>
+          {
+            deckIndex >= 0 && (
+              <span class="tabular-nums text-ink/35">
+                {`${String(deckIndex + 1).padStart(2, "0")}/${String(DECK.length).padStart(2, "0")}`}
+              </span>
+            )
+          }
+        </span>
+      </footer>
+    </div>
+
     <CookieBanner lang={lang} />
 
-    <!-- Reveal on scroll (progressive enhancement) -->
     <script>
-      const els = document.querySelectorAll(".reveal");
-      if ("IntersectionObserver" in window && els.length) {
-        const io = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((e) => {
-              if (e.isIntersecting) {
-                e.target.classList.add("is-visible");
-                io.unobserve(e.target);
-              }
-            });
-          },
-          { rootMargin: "0px 0px -10% 0px", threshold: 0.1 }
+      import { navigate } from "astro:transitions/client";
+
+      /* Arrow keys page through the deck, like a slide remote. Routed through
+         the client router so keyboard paging cross-fades like a click. */
+      const bindDeckKeys = () => {
+        const frame = document.querySelector<HTMLElement>(".slide");
+        if (!frame) return;
+
+        const onKey = (e: KeyboardEvent) => {
+          if (e.metaKey || e.ctrlKey || e.altKey) return;
+          const el = e.target as HTMLElement | null;
+          if (el && el.closest("input, textarea, select, [contenteditable]"))
+            return;
+
+          const dir =
+            e.key === "ArrowRight" ? "next" : e.key === "ArrowLeft" ? "prev" : "";
+          if (!dir) return;
+
+          const href = frame.dataset[dir];
+          if (href) {
+            e.preventDefault();
+            navigate(href);
+          }
+        };
+
+        document.addEventListener("keydown", onKey);
+        document.addEventListener(
+          "astro:before-swap",
+          () => document.removeEventListener("keydown", onKey),
+          { once: true }
         );
-        els.forEach((el) => io.observe(el));
-      } else {
-        els.forEach((el) => el.classList.add("is-visible"));
-      }
+      };
+
+      /* `astro:page-load` fires on the initial load too, so binding only there
+         avoids a duplicate listener on the first page. */
+      document.addEventListener("astro:page-load", bindDeckKeys);
     </script>
   </body>
 </html>

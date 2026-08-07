@@ -47,9 +47,9 @@ export const SITE = {
 
   /** TODO: legal entity data (required for Aviso legal / RGPD) */
   legal: {
-    companyName: "Auttomatik S.L.",
-    taxId: "B-00000000",
-    address: "Calle Ejemplo 1, 00000 Ciudad, España",
+    companyName: "Innovalaus S.L.",
+    taxId: "B67146357",
+    address: "Calle Béjar 36, 1º, 08014 Barcelona",
   },
 } as const;
 

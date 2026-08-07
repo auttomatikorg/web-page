@@ -1,28 +1,93 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Hero from "@/components/sections/Hero.astro";
-import ProblemSection from "@/components/sections/ProblemSection.astro";
-import Differentiators from "@/components/sections/Differentiators.astro";
-import Stats from "@/components/sections/Stats.astro";
-import FaqAccordion from "@/components/sections/FaqAccordion.astro";
-import CtaSection from "@/components/sections/CtaSection.astro";
-
-import { SITE, whatsappLink } from "@/config/site";
+import ParticleField from "@/components/ParticleField.astro";
+import { Icon } from "astro-icon/components";
+import { SITE } from "@/config/site";
 import type { Locale } from "@/config/site";
-import { getHome } from "@/i18n/content/home";
-import { useTranslations } from "@/i18n/ui";
+import { getSlides } from "@/i18n/content/slides";
 import { route } from "@/i18n/utils";
 
 interface Props {
   lang: Locale;
 }
 const { lang } = Astro.props;
-const c = getHome(lang);
-const t = useTranslations(lang);
+const c = getSlides(lang).home;
 
-const bookingHref = SITE.booking.bookingUrl;
-const whatsappHref = whatsappLink(t("wa.default"));
-const processHref = route("process", lang);
+const titleStart = {
+  es: "Empieza a implementar",
+  ca: "Comença a implementar",
+  en: "Start implementing",
+}[lang];
+const titleAccent = {
+  es: "procesos escalables",
+  ca: "processos escalables",
+  en: "scalable processes",
+}[lang];
+const processLabel = {
+  es: "Cómo trabajamos",
+  ca: "Com treballem",
+  en: "How we work",
+}[lang];
+const aboutLabel = {
+  es: "Sobre Nosotros",
+  ca: "Sobre nosaltres",
+  en: "About us",
+}[lang];
+const auditLabel = {
+  es: "Contacta con nosotros",
+  ca: "Contacta amb nosaltres",
+  en: "Contact us",
+}[lang];
+const processKicker = {
+  es: "Nuestro método",
+  ca: "El nostre mètode",
+  en: "Our method",
+}[lang];
+const resultsTrigger = {
+  es: "Qué resultados te esperan",
+  ca: "Quins resultats t'esperen",
+  en: "What results to expect",
+}[lang];
+const resultsTitle = {
+  es: "Resultados esperados",
+  ca: "Resultats esperats",
+  en: "Expected results",
+}[lang];
+const closeLabel = {
+  es: "Cerrar",
+  ca: "Tancar",
+  en: "Close",
+}[lang];
+const teamImageAlt = {
+  es: "Equipo de Auttomatik",
+  ca: "Equip d'Auttomatik",
+  en: "Auttomatik team",
+}[lang];
+const kpiStatements = {
+  es: [
+    { value: "+120 h/mes", label: "liberadas de trabajo manual" },
+    { value: "-42 %", label: "de tiempo en tareas repetitivas" },
+    { value: "−28 %", label: "de costes operativos" },
+    { value: "4,2×", label: "de retorno sobre la inversión" },
+  ],
+  ca: [
+    { value: "+120 h/mes", label: "alliberades de treball manual" },
+    { value: "-42 %", label: "de temps en tasques repetitives" },
+    { value: "−28 %", label: "de costos operatius" },
+    { value: "4,2×", label: "de retorn sobre la inversió" },
+  ],
+  en: [
+    { value: "+120 h/mo", label: "freed from manual work" },
+    { value: "-42 %", label: "time spent on repetitive tasks" },
+    { value: "−28 %", label: "operating costs" },
+    { value: "4.2×", label: "return on investment" },
+  ],
+}[lang];
+const heroSubtitle = {
+  es: "Ayudamos a pymes con procesos repetitivos a automatizar operaciones sin disparar costes",
+  ca: "Ajudem pimes amb processos repetitius a automatitzar operacions sense disparar costos",
+  en: "We help SMEs with repetitive processes automate operations without increasing costs",
+}[lang];
 ---
 
 <BaseLayout
@@ -31,14 +96,151 @@ const processHref = route("process", lang);
   lang={lang}
   pageKey="home"
 >
-  <Hero content={c.hero} bookingHref={bookingHref} processHref={processHref} />
-  <ProblemSection content={c.problem} />
-  <Stats content={c.stats} />
-  <Differentiators content={c.differentiators} />
-  <FaqAccordion content={c.faq} />
-  <CtaSection
-    content={c.finalCta}
-    bookingHref={bookingHref}
-    whatsappHref={whatsappHref}
-  />
+  <section class="home-orbit" aria-labelledby="home-title">
+    <ParticleField />
+
+    <div class="home-title-wrap enter" style="--delay:80ms">
+      <button class="home-result-trigger" type="button" data-kpi-open>
+        <Icon name="lucide:info" class="h-3.5 w-3.5" aria-hidden="true" />
+        {resultsTrigger}
+      </button>
+      <h1 id="home-title" class="home-title">
+        {titleStart}
+        <span>{titleAccent}</span>
+      </h1>
+      <p class="home-subtitle" data-typewriter>{heroSubtitle}</p>
+    </div>
+
+    <div class="home-card-row">
+      <div class="home-action-stack">
+        <a
+          href={SITE.booking.bookingUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="home-card home-card-primary enter"
+          style="--delay:360ms"
+        >
+          <strong>{c.cta}</strong>
+          <span class="home-card-kicker">{auditLabel}</span>
+          <span class="home-card-arrow" aria-hidden="true">
+            <Icon name="lucide:arrow-up-right" class="h-5 w-5" />
+          </span>
+        </a>
+
+        <a
+          href={route("process", lang)}
+          class="home-card home-card-secondary enter"
+          style="--delay:440ms"
+        >
+          <strong>{processLabel}</strong>
+          <span class="home-card-kicker">{processKicker}</span>
+          <span class="home-card-arrow" aria-hidden="true">
+            <Icon name="lucide:arrow-up-right" class="h-5 w-5" />
+          </span>
+        </a>
+      </div>
+
+      <a
+        href={route("about", lang)}
+        class="home-team-card enter"
+        style="--delay:520ms"
+        aria-label={aboutLabel}
+      >
+        <img
+          src="/images/equipo%20Auttomatik.png"
+          alt={teamImageAlt}
+          loading="eager"
+          decoding="async"
+        />
+        <span class="home-team-overlay">
+          <span>{aboutLabel}</span>
+          <Icon name="lucide:arrow-up-right" class="h-5 w-5" />
+        </span>
+      </a>
+    </div>
+
+    <dialog class="home-kpi-dialog" aria-labelledby="home-kpi-dialog-title" data-kpi-dialog>
+      <div class="home-kpi-dialog-inner">
+        <div class="home-kpi-dialog-head">
+          <p class="micro text-primary">{resultsTrigger}</p>
+          <button type="button" class="home-kpi-close" data-kpi-close aria-label={closeLabel}>
+            <Icon name="lucide:x" class="h-5 w-5" aria-hidden="true" />
+          </button>
+        </div>
+        <h2 id="home-kpi-dialog-title">{resultsTitle}</h2>
+        <div class="home-kpi-list">
+          {kpiStatements.map((item) => (
+            <div class="home-kpi-item">
+              <strong>{item.value}</strong>
+              <span>{item.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </dialog>
+  </section>
 </BaseLayout>
+
+<script>
+  const subtitles = document.querySelectorAll<HTMLElement>("[data-typewriter]");
+
+  subtitles.forEach((subtitle) => {
+    const text = subtitle.textContent?.trim() ?? "";
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let timeout = 0;
+
+    if (!text || reducedMotion.matches) {
+      subtitle.textContent = text;
+      subtitle.classList.add("is-written");
+      return;
+    }
+
+    subtitle.textContent = "";
+    subtitle.setAttribute("aria-label", text);
+
+    const write = (index = 0) => {
+      subtitle.classList.remove("is-written");
+      subtitle.textContent = text.slice(0, index);
+
+      if (index <= text.length) {
+        timeout = window.setTimeout(
+          () => write(index + 1),
+          58 + Math.random() * 46,
+        );
+        return;
+      }
+
+      subtitle.textContent = text;
+      subtitle.classList.add("is-written");
+      timeout = window.setTimeout(() => {
+        subtitle.textContent = "";
+        subtitle.classList.remove("is-written");
+        write(0);
+      }, 60000);
+    };
+
+    timeout = window.setTimeout(() => write(0), 420);
+
+    document.addEventListener(
+      "astro:before-swap",
+      () => window.clearTimeout(timeout),
+      { once: true },
+    );
+  });
+
+  const dialog = document.querySelector<HTMLDialogElement>("[data-kpi-dialog]");
+  const openButton = document.querySelector<HTMLButtonElement>("[data-kpi-open]");
+  const closeButton = document.querySelector<HTMLButtonElement>("[data-kpi-close]");
+
+  if (dialog && openButton && closeButton) {
+    const closeDialog = () => dialog.close();
+
+    openButton.addEventListener("click", () => dialog.showModal());
+    closeButton.addEventListener("click", closeDialog);
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) {
+        closeDialog();
+      }
+    });
+  }
+</script>

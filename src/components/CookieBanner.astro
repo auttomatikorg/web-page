@@ -33,32 +33,32 @@ const c = copy[lang];
 <div
   id="cookie-banner"
   hidden
-  class="fixed inset-x-0 bottom-0 z-50 border-t border-ink/10 bg-white/95 backdrop-blur-md"
+  class="fixed inset-x-0 bottom-0 z-50 border-t border-ink/12 bg-paper"
   role="dialog"
   aria-live="polite"
   aria-label="Cookies"
 >
   <div
-    class="container-x flex flex-col gap-4 py-4 md:flex-row md:items-center md:justify-between"
+    class="flex flex-col gap-3 px-5 py-3 sm:flex-row sm:items-center sm:justify-between md:px-10"
   >
-    <p class="max-w-2xl text-sm text-ink-soft">
+    <p class="micro max-w-2xl leading-relaxed text-ink-mute normal-case tracking-normal">
       {c.text}
-      <a href={route("cookies", lang)} class="ml-1 font-medium text-primary underline">
+      <a href={route("cookies", lang)} class="ml-1 text-primary-ink underline underline-offset-2">
         {c.more}
       </a>
     </p>
-    <div class="flex shrink-0 gap-2">
+    <div class="flex shrink-0 gap-5">
       <button
         type="button"
         data-cookie="reject"
-        class="rounded-full px-4 py-2 text-sm font-medium text-ink ring-1 ring-ink/20 transition-colors hover:bg-ink/5"
+        class="micro underline underline-offset-2 text-ink-mute transition-colors hover:text-ink"
       >
         {c.reject}
       </button>
       <button
         type="button"
         data-cookie="accept"
-        class="rounded-full bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-dark"
+        class="micro underline underline-offset-2 text-primary-ink transition-colors hover:text-primary"
       >
         {c.accept}
       </button>
@@ -67,15 +67,26 @@ const c = copy[lang];
 </div>
 
 <script>
+  /* The banner is fixed, and a slide fills the viewport exactly — without
+     reserving room for it the banner would sit on top of the bottom bar. */
   const KEY = "auttomatik-cookie-consent";
-  const banner = document.getElementById("cookie-banner");
-  if (banner && !localStorage.getItem(KEY)) {
-    banner.hidden = false;
-  }
-  banner?.querySelectorAll<HTMLButtonElement>("[data-cookie]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      localStorage.setItem(KEY, btn.dataset.cookie || "accept");
-      if (banner) banner.hidden = true;
+
+  const setup = () => {
+    const banner = document.getElementById("cookie-banner");
+    if (!banner) return;
+
+    const show = !localStorage.getItem(KEY);
+    banner.hidden = !show;
+    document.documentElement.classList.toggle("has-cookie-banner", show);
+
+    banner.querySelectorAll<HTMLButtonElement>("[data-cookie]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        localStorage.setItem(KEY, btn.dataset.cookie || "accept");
+        banner.hidden = true;
+        document.documentElement.classList.remove("has-cookie-banner");
+      });
     });
-  });
+  };
+
+  document.addEventListener("astro:page-load", setup);
 </script>

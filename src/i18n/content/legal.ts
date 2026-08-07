@@ -25,8 +25,7 @@ const es: LegalBundle = {
   legal: {
     title: "Aviso legal",
     updatedLabel: "Última actualización",
-    reviewNote:
-      "Plantilla orientativa conforme a la LSSI-CE. Revísala con un profesional y completa los datos de la empresa antes de publicar.",
+    reviewNote: "",
     sections: [
       {
         heading: "1. Información general y titularidad",
@@ -101,8 +100,7 @@ const es: LegalBundle = {
   privacy: {
     title: "Política de privacidad",
     updatedLabel: "Última actualización",
-    reviewNote:
-      "Plantilla orientativa conforme al RGPD (UE 2016/679) y a la LOPDGDD. Revísala con un profesional y adáptala a tu tratamiento real de datos.",
+    reviewNote: "",
     sections: [
       {
         heading: "1. Responsable del tratamiento",
@@ -189,8 +187,7 @@ const es: LegalBundle = {
   cookies: {
     title: "Política de cookies",
     updatedLabel: "Última actualización",
-    reviewNote:
-      "Plantilla orientativa conforme a la guía de la AEPD. Ajusta el listado de cookies a las que realmente utilice tu sitio y tus proveedores.",
+    reviewNote: "",
     sections: [
       {
         heading: "1. ¿Qué son las cookies?",
@@ -248,8 +245,7 @@ const ca: LegalBundle = {
   legal: {
     title: "Avís legal",
     updatedLabel: "Última actualització",
-    reviewNote:
-      "Plantilla orientativa conforme a la LSSI-CE. Revisa-la amb un professional i completa les dades de l'empresa abans de publicar.",
+    reviewNote: "",
     sections: [
       {
         heading: "1. Informació general i titularitat",
@@ -324,8 +320,7 @@ const ca: LegalBundle = {
   privacy: {
     title: "Política de privacitat",
     updatedLabel: "Última actualització",
-    reviewNote:
-      "Plantilla orientativa conforme al RGPD (UE 2016/679) i a la LOPDGDD. Revisa-la amb un professional i adapta-la al teu tractament real de dades.",
+    reviewNote: "",
     sections: [
       {
         heading: "1. Responsable del tractament",
@@ -412,8 +407,7 @@ const ca: LegalBundle = {
   cookies: {
     title: "Política de cookies",
     updatedLabel: "Última actualització",
-    reviewNote:
-      "Plantilla orientativa conforme a la guia de l'AEPD. Ajusta el llistat de cookies a les que realment faci servir el teu lloc i els teus proveïdors.",
+    reviewNote: "",
     sections: [
       {
         heading: "1. Què són les cookies?",
