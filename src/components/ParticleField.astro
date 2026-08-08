@@ -1,149 +1,172 @@
 <canvas class="particle-field" data-particle-field aria-hidden="true"></canvas>
 
 <script>
-  const canvases = document.querySelectorAll<HTMLCanvasElement>(
-    "[data-particle-field]",
-  );
+  type ParticleCanvas = HTMLCanvasElement & {
+    __auttomatikParticleCleanup?: () => void;
+  };
 
-  canvases.forEach((canvas) => {
-    const context = canvas.getContext("2d", { alpha: true });
-    if (!context) return;
+  const setupParticleFields = () => {
+    const canvases = document.querySelectorAll<ParticleCanvas>(
+      "[data-particle-field]",
+    );
 
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const pointer = { x: 0, y: 0, tx: 0, ty: 0, active: false };
-    let width = 1;
-    let height = 1;
-    let dpr = 1;
-    let frame = 0;
+    canvases.forEach((canvas) => {
+      if (canvas.dataset.particleReady === "true") return;
 
-    type Particle = {
-      x: number;
-      y: number;
-      z: number;
-      vx: number;
-      vy: number;
-      size: number;
-      alpha: number;
-      phase: number;
-    };
+      const context = canvas.getContext("2d", { alpha: true });
+      if (!context) return;
 
-    let particles: Particle[] = [];
+      canvas.__auttomatikParticleCleanup?.();
+      canvas.dataset.particleReady = "true";
 
-    const createParticle = (): Particle => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      z: 0.35 + Math.random() * 1.25,
-      vx: -0.08 + Math.random() * 0.16,
-      vy: -0.06 + Math.random() * 0.12,
-      size: 0.8 + Math.random() * 2.4,
-      alpha: 0.18 + Math.random() * 0.28,
-      phase: Math.random() * Math.PI * 2,
-    });
+      const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const pointer = { x: 0, y: 0, tx: 0, ty: 0, active: false };
+      let width = 1;
+      let height = 1;
+      let dpr = 1;
+      let frame = 0;
 
-    const resize = () => {
-      const rect = canvas.getBoundingClientRect();
-      width = Math.max(1, rect.width);
-      height = Math.max(1, rect.height);
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = Math.floor(width * dpr);
-      canvas.height = Math.floor(height * dpr);
-      context.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = Math.round(Math.min(150, Math.max(72, width / 12)));
-      particles = Array.from({ length: count }, createParticle);
-    };
+      type Particle = {
+        x: number;
+        y: number;
+        z: number;
+        vx: number;
+        vy: number;
+        size: number;
+        alpha: number;
+        phase: number;
+      };
 
-    const onPointerMove = (event: PointerEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      pointer.tx = event.clientX - rect.left;
-      pointer.ty = event.clientY - rect.top;
-      pointer.active = true;
-    };
+      let particles: Particle[] = [];
 
-    const onPointerLeave = () => {
-      pointer.active = false;
-      pointer.tx = width / 2;
-      pointer.ty = height / 2;
-    };
+      const createParticle = (): Particle => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        z: 0.35 + Math.random() * 1.25,
+        vx: -0.08 + Math.random() * 0.16,
+        vy: -0.06 + Math.random() * 0.12,
+        size: 0.8 + Math.random() * 2.4,
+        alpha: 0.18 + Math.random() * 0.28,
+        phase: Math.random() * Math.PI * 2,
+      });
 
-    const draw = () => {
-      frame = requestAnimationFrame(draw);
-      context.clearRect(0, 0, width, height);
+      const resize = () => {
+        const rect = canvas.getBoundingClientRect();
+        width = Math.max(1, rect.width);
+        height = Math.max(1, rect.height);
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        context.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const count = Math.round(Math.min(150, Math.max(72, width / 12)));
+        particles = Array.from({ length: count }, createParticle);
+      };
 
-      pointer.x += (pointer.tx - pointer.x) * 0.055;
-      pointer.y += (pointer.ty - pointer.y) * 0.055;
+      const onPointerMove = (event: PointerEvent) => {
+        const rect = canvas.getBoundingClientRect();
+        pointer.tx = event.clientX - rect.left;
+        pointer.ty = event.clientY - rect.top;
+        pointer.active = true;
+      };
 
-      for (let i = 0; i < particles.length; i += 1) {
-        const particle = particles[i];
-        const speed = media.matches ? 0.12 : 1;
-        const dx = particle.x - pointer.x;
-        const dy = particle.y - pointer.y;
-        const distance = Math.max(1, Math.hypot(dx, dy));
-        const force = pointer.active ? Math.max(0, 1 - distance / 220) : 0;
-        const parallax = force * particle.z;
+      const onPointerLeave = () => {
+        pointer.active = false;
+        pointer.tx = width / 2;
+        pointer.ty = height / 2;
+      };
 
-        particle.x +=
-          (particle.vx + Math.cos(performance.now() * 0.00018 + particle.phase) * 0.035) *
-          particle.z *
-          speed;
-        particle.y +=
-          (particle.vy + Math.sin(performance.now() * 0.00014 + particle.phase) * 0.03) *
-          particle.z *
-          speed;
+      const draw = () => {
+        frame = requestAnimationFrame(draw);
+        context.clearRect(0, 0, width, height);
 
-        particle.x += (dx / distance) * parallax * 1.9;
-        particle.y += (dy / distance) * parallax * 1.9;
+        pointer.x += (pointer.tx - pointer.x) * 0.055;
+        pointer.y += (pointer.ty - pointer.y) * 0.055;
 
-        if (particle.x < -24) particle.x = width + 24;
-        if (particle.x > width + 24) particle.x = -24;
-        if (particle.y < -24) particle.y = height + 24;
-        if (particle.y > height + 24) particle.y = -24;
+        for (let i = 0; i < particles.length; i += 1) {
+          const particle = particles[i];
+          const speed = media.matches ? 0.12 : 1;
+          const dx = particle.x - pointer.x;
+          const dy = particle.y - pointer.y;
+          const distance = Math.max(1, Math.hypot(dx, dy));
+          const force = pointer.active ? Math.max(0, 1 - distance / 220) : 0;
+          const parallax = force * particle.z;
 
-        const glow = particle.size * (2.4 + particle.z * 1.8 + force * 5);
-        const gradient = context.createRadialGradient(
-          particle.x,
-          particle.y,
-          0,
-          particle.x,
-          particle.y,
-          glow,
-        );
-        gradient.addColorStop(
-          0,
-          `rgba(255, 255, 255, ${particle.alpha + force * 0.22})`,
-        );
-        gradient.addColorStop(
-          0.35,
-          `rgba(214, 219, 228, ${(particle.alpha + force * 0.16) * 0.42})`,
-        );
-        gradient.addColorStop(1, "rgba(214, 219, 228, 0)");
+          particle.x +=
+            (particle.vx + Math.cos(performance.now() * 0.00018 + particle.phase) * 0.035) *
+            particle.z *
+            speed;
+          particle.y +=
+            (particle.vy + Math.sin(performance.now() * 0.00014 + particle.phase) * 0.03) *
+            particle.z *
+            speed;
 
-        context.fillStyle = gradient;
-        context.beginPath();
-        context.arc(particle.x, particle.y, glow, 0, Math.PI * 2);
-        context.fill();
+          particle.x += (dx / distance) * parallax * 1.9;
+          particle.y += (dy / distance) * parallax * 1.9;
 
-        context.fillStyle = `rgba(178, 185, 199, ${0.22 + force * 0.28})`;
-        context.beginPath();
-        context.arc(particle.x, particle.y, particle.size * particle.z, 0, Math.PI * 2);
-        context.fill();
-      }
-    };
+          if (particle.x < -24) particle.x = width + 24;
+          if (particle.x > width + 24) particle.x = -24;
+          if (particle.y < -24) particle.y = height + 24;
+          if (particle.y > height + 24) particle.y = -24;
 
-    resize();
-    window.addEventListener("pointermove", onPointerMove);
-    window.addEventListener("pointerleave", onPointerLeave);
-    window.addEventListener("resize", resize);
-    draw();
+          const glow = particle.size * (2.4 + particle.z * 1.8 + force * 5);
+          const gradient = context.createRadialGradient(
+            particle.x,
+            particle.y,
+            0,
+            particle.x,
+            particle.y,
+            glow,
+          );
+          gradient.addColorStop(
+            0,
+            `rgba(255, 255, 255, ${particle.alpha + force * 0.22})`,
+          );
+          gradient.addColorStop(
+            0.35,
+            `rgba(214, 219, 228, ${(particle.alpha + force * 0.16) * 0.42})`,
+          );
+          gradient.addColorStop(1, "rgba(214, 219, 228, 0)");
 
-    document.addEventListener(
-      "astro:before-swap",
-      () => {
+          context.fillStyle = gradient;
+          context.beginPath();
+          context.arc(particle.x, particle.y, glow, 0, Math.PI * 2);
+          context.fill();
+
+          context.fillStyle = `rgba(178, 185, 199, ${0.22 + force * 0.28})`;
+          context.beginPath();
+          context.arc(particle.x, particle.y, particle.size * particle.z, 0, Math.PI * 2);
+          context.fill();
+        }
+      };
+
+      const cleanup = () => {
         cancelAnimationFrame(frame);
         window.removeEventListener("pointermove", onPointerMove);
         window.removeEventListener("pointerleave", onPointerLeave);
         window.removeEventListener("resize", resize);
-      },
-      { once: true },
-    );
-  });
+        delete canvas.dataset.particleReady;
+        delete canvas.__auttomatikParticleCleanup;
+      };
+
+      canvas.__auttomatikParticleCleanup = cleanup;
+      resize();
+      window.addEventListener("pointermove", onPointerMove);
+      window.addEventListener("pointerleave", onPointerLeave);
+      window.addEventListener("resize", resize);
+      draw();
+
+      document.addEventListener("astro:before-swap", cleanup, { once: true });
+    });
+  };
+
+  const particleWindow = window as Window & {
+    __auttomatikParticleFieldsBound?: boolean;
+  };
+
+  if (!particleWindow.__auttomatikParticleFieldsBound) {
+    particleWindow.__auttomatikParticleFieldsBound = true;
+    document.addEventListener("astro:page-load", setupParticleFields);
+  }
+
+  setupParticleFields();
 </script>

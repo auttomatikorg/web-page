@@ -182,65 +182,117 @@ const heroSubtitle = {
 </BaseLayout>
 
 <script>
-  const subtitles = document.querySelectorAll<HTMLElement>("[data-typewriter]");
+  type TypewriterElement = HTMLElement & {
+    __auttomatikTypewriterCleanup?: () => void;
+  };
+  type KpiButton = HTMLButtonElement & {
+    __auttomatikKpiCleanup?: () => void;
+  };
 
-  subtitles.forEach((subtitle) => {
-    const text = subtitle.textContent?.trim() ?? "";
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let timeout = 0;
+  const setupHomePage = () => {
+    const subtitles = document.querySelectorAll<TypewriterElement>("[data-typewriter]");
 
-    if (!text || reducedMotion.matches) {
-      subtitle.textContent = text;
-      subtitle.classList.add("is-written");
-      return;
-    }
+    subtitles.forEach((subtitle) => {
+      if (subtitle.dataset.typewriterReady === "true") return;
 
-    subtitle.textContent = "";
-    subtitle.setAttribute("aria-label", text);
+      const text =
+        subtitle.dataset.typewriterText || subtitle.textContent?.trim() || "";
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      let timeout = 0;
 
-    const write = (index = 0) => {
-      subtitle.classList.remove("is-written");
-      subtitle.textContent = text.slice(0, index);
+      subtitle.__auttomatikTypewriterCleanup?.();
+      subtitle.dataset.typewriterReady = "true";
+      subtitle.dataset.typewriterText = text;
 
-      if (index <= text.length) {
-        timeout = window.setTimeout(
-          () => write(index + 1),
-          58 + Math.random() * 46,
-        );
+      const cleanup = () => {
+        window.clearTimeout(timeout);
+        delete subtitle.dataset.typewriterReady;
+        delete subtitle.__auttomatikTypewriterCleanup;
+      };
+
+      subtitle.__auttomatikTypewriterCleanup = cleanup;
+
+      if (!text || reducedMotion.matches) {
+        subtitle.textContent = text;
+        subtitle.classList.add("is-written");
+        document.addEventListener("astro:before-swap", cleanup, { once: true });
         return;
       }
 
-      subtitle.textContent = text;
-      subtitle.classList.add("is-written");
-      timeout = window.setTimeout(() => {
-        subtitle.textContent = "";
+      subtitle.textContent = "";
+      subtitle.setAttribute("aria-label", text);
+
+      const write = (index = 0) => {
         subtitle.classList.remove("is-written");
-        write(0);
-      }, 60000);
-    };
+        subtitle.textContent = text.slice(0, index);
 
-    timeout = window.setTimeout(() => write(0), 420);
+        if (index <= text.length) {
+          timeout = window.setTimeout(
+            () => write(index + 1),
+            58 + Math.random() * 46,
+          );
+          return;
+        }
 
-    document.addEventListener(
-      "astro:before-swap",
-      () => window.clearTimeout(timeout),
-      { once: true },
-    );
-  });
+        subtitle.textContent = text;
+        subtitle.classList.add("is-written");
+        timeout = window.setTimeout(() => {
+          subtitle.textContent = "";
+          subtitle.classList.remove("is-written");
+          write(0);
+        }, 60000);
+      };
 
-  const dialog = document.querySelector<HTMLDialogElement>("[data-kpi-dialog]");
-  const openButton = document.querySelector<HTMLButtonElement>("[data-kpi-open]");
-  const closeButton = document.querySelector<HTMLButtonElement>("[data-kpi-close]");
-
-  if (dialog && openButton && closeButton) {
-    const closeDialog = () => dialog.close();
-
-    openButton.addEventListener("click", () => dialog.showModal());
-    closeButton.addEventListener("click", closeDialog);
-    dialog.addEventListener("click", (event) => {
-      if (event.target === dialog) {
-        closeDialog();
-      }
+      timeout = window.setTimeout(() => write(0), 420);
+      document.addEventListener("astro:before-swap", cleanup, { once: true });
     });
+
+    const dialog = document.querySelector<HTMLDialogElement>("[data-kpi-dialog]");
+    const openButton = document.querySelector<KpiButton>("[data-kpi-open]");
+    const closeButton = document.querySelector<HTMLButtonElement>("[data-kpi-close]");
+
+    if (dialog && openButton && closeButton && openButton.dataset.kpiReady !== "true") {
+      openButton.__auttomatikKpiCleanup?.();
+      openButton.dataset.kpiReady = "true";
+
+      const controller = new AbortController();
+      const closeDialog = () => dialog.close();
+
+      openButton.addEventListener("click", () => dialog.showModal(), {
+        signal: controller.signal,
+      });
+      closeButton.addEventListener("click", closeDialog, {
+        signal: controller.signal,
+      });
+      dialog.addEventListener(
+        "click",
+        (event) => {
+          if (event.target === dialog) {
+            closeDialog();
+          }
+        },
+        { signal: controller.signal },
+      );
+
+      const cleanup = () => {
+        controller.abort();
+        delete openButton.dataset.kpiReady;
+        delete openButton.__auttomatikKpiCleanup;
+      };
+
+      openButton.__auttomatikKpiCleanup = cleanup;
+      document.addEventListener("astro:before-swap", cleanup, { once: true });
+    }
+  };
+
+  const homeWindow = window as Window & {
+    __auttomatikHomePageBound?: boolean;
+  };
+
+  if (!homeWindow.__auttomatikHomePageBound) {
+    homeWindow.__auttomatikHomePageBound = true;
+    document.addEventListener("astro:page-load", setupHomePage);
   }
+
+  setupHomePage();
 </script>

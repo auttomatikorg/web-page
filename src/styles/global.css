@@ -178,16 +178,6 @@
     position: relative;
   }
 
-  /* Room for the fixed cookie banner so it never covers the footer line. */
-  .has-cookie-banner .slide {
-    padding-bottom: 6.5rem;
-  }
-  @media (min-width: 640px) {
-    .has-cookie-banner .slide {
-      padding-bottom: 4.5rem;
-    }
-  }
-
   /* Short laptops (1280×720 and friends) have ~570px of stage. Decorative
      parts of a composition drop out there so the substance still fits one
      screen instead of sliding under the footer. */
@@ -364,12 +354,14 @@
     padding: 0;
   }
   @media (max-width: 520px) {
-    .top-cta span {
-      display: none;
-    }
     .top-pill {
       min-width: 2.75rem;
       padding: 0 0.75rem;
+    }
+    .top-cta {
+      min-width: 0;
+      padding-inline: 0.8rem;
+      font-size: 0.875rem;
     }
   }
 
@@ -1370,6 +1362,9 @@
     .flip-card {
       min-height: 24rem;
     }
+    .phase-back-action {
+      display: none;
+    }
 
     .about-page {
       grid-template-columns: 1fr;
@@ -1385,7 +1380,14 @@
       max-width: 100%;
     }
     .about-team-panel {
-      min-height: 28rem;
+      min-height: 24rem;
+    }
+    .about-team-image {
+      padding: 0.75rem;
+      object-fit: contain;
+    }
+    .about-team-panel[open] .about-team-image {
+      transform: none;
     }
     .about-team-cards {
       grid-template-columns: 1fr;
@@ -1434,7 +1436,7 @@
     }
 
     .about-team-panel {
-      min-height: 26rem;
+      min-height: 21rem;
       border-radius: 10px;
     }
     .about-team-shell {

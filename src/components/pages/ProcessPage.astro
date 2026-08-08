@@ -205,22 +205,58 @@ const clients = [
 </BaseLayout>
 
 <script>
-  const cards = document.querySelectorAll<HTMLElement>("[data-flip-card]");
+  type FlipCard = HTMLElement & {
+    __auttomatikFlipCleanup?: () => void;
+  };
 
-  cards.forEach((card) => {
-    const buttons = card.querySelectorAll<HTMLButtonElement>("[data-flip-button]");
+  const setupProcessCards = () => {
+    const cards = document.querySelectorAll<FlipCard>("[data-flip-card]");
 
-    const setFlipped = (flipped: boolean) => {
-      card.classList.toggle("is-flipped", flipped);
+    cards.forEach((card) => {
+      if (card.dataset.flipReady === "true") return;
+
+      card.__auttomatikFlipCleanup?.();
+      card.dataset.flipReady = "true";
+
+      const buttons = card.querySelectorAll<HTMLButtonElement>("[data-flip-button]");
+      const controller = new AbortController();
+
+      const setFlipped = (flipped: boolean) => {
+        card.classList.toggle("is-flipped", flipped);
+        buttons.forEach((button) => {
+          button.setAttribute("aria-pressed", String(flipped));
+        });
+      };
+
       buttons.forEach((button) => {
-        button.setAttribute("aria-pressed", String(flipped));
+        button.addEventListener(
+          "click",
+          () => {
+            setFlipped(!card.classList.contains("is-flipped"));
+          },
+          { signal: controller.signal },
+        );
       });
-    };
 
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => {
-        setFlipped(!card.classList.contains("is-flipped"));
-      });
+      const cleanup = () => {
+        controller.abort();
+        delete card.dataset.flipReady;
+        delete card.__auttomatikFlipCleanup;
+      };
+
+      card.__auttomatikFlipCleanup = cleanup;
+      document.addEventListener("astro:before-swap", cleanup, { once: true });
     });
-  });
+  };
+
+  const processWindow = window as Window & {
+    __auttomatikProcessCardsBound?: boolean;
+  };
+
+  if (!processWindow.__auttomatikProcessCardsBound) {
+    processWindow.__auttomatikProcessCardsBound = true;
+    document.addEventListener("astro:page-load", setupProcessCards);
+  }
+
+  setupProcessCards();
 </script>

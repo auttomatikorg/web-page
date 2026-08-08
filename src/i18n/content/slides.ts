@@ -178,7 +178,7 @@ const es: SlideContent = {
       {
         name: "Marc Font",
         role: "DevOps y automatización",
-        experience: "Especialista con foco DevOps para crear automatizaciones mantenibles y estables.",
+        experience: "Especialista con foco DevOps para crear automatizaciones estables.",
         linkedin: "https://www.linkedin.com/in/marc-font-olle-",
       },
       {
@@ -331,7 +331,7 @@ const ca: SlideContent = {
       {
         name: "Marc Font",
         role: "DevOps i automatització",
-        experience: "Especialista amb focus DevOps per crear automatitzacions mantenibles i estables.",
+        experience: "Especialista amb focus DevOps per crear automatitzacions estables.",
         linkedin: "https://www.linkedin.com/in/marc-font-olle-",
       },
       {
@@ -484,7 +484,7 @@ const en: SlideContent = {
       {
         name: "Marc Font",
         role: "DevOps & Automation",
-        experience: "DevOps-focused specialist building maintainable, stable automations.",
+        experience: "DevOps-focused specialist building stable automations.",
         linkedin: "https://www.linkedin.com/in/marc-font-olle-",
       },
       {
