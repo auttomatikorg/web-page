@@ -20,6 +20,7 @@ export const ui = {
       "Hola, me gustaría saber cómo la IA puede ayudar a mi empresa.",
 
     "footer.legal": "Aviso legal",
+    "footer.terms": "Términos y condiciones",
     "footer.privacy": "Privacidad",
     "footer.cookies": "Cookies",
   },
@@ -38,6 +39,7 @@ export const ui = {
       "Hola, m'agradaria saber com la IA pot ajudar la meva empresa.",
 
     "footer.legal": "Avís legal",
+    "footer.terms": "Termes i condicions",
     "footer.privacy": "Privacitat",
     "footer.cookies": "Cookies",
   },
@@ -55,6 +57,7 @@ export const ui = {
     "wa.default": "Hi, I'd like to know how AI can help my company.",
 
     "footer.legal": "Legal notice",
+    "footer.terms": "Terms and conditions",
     "footer.privacy": "Privacy",
     "footer.cookies": "Cookies",
   },

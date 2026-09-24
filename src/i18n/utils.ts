@@ -20,6 +20,7 @@ export type PageKey =
   | "about"
   | "contact"
   | "legal"
+  | "terms"
   | "privacy"
   | "cookies";
 
@@ -29,6 +30,7 @@ export const ROUTES: Record<PageKey, Record<Locale, string>> = {
   about: { es: "/sobre-nosotros/", ca: "/ca/sobre-nosaltres/", en: "/en/about/" },
   contact: { es: "/contacto/", ca: "/ca/contacte/", en: "/en/contact/" },
   legal: { es: "/aviso-legal/", ca: "/ca/avis-legal/", en: "/en/legal-notice/" },
+  terms: { es: "/terminos-y-condiciones/", ca: "/ca/termes-i-condicions/", en: "/en/terms-and-conditions/" },
   privacy: { es: "/privacidad/", ca: "/ca/privacitat/", en: "/en/privacy/" },
   cookies: { es: "/cookies/", ca: "/ca/cookies/", en: "/en/cookies/" },
 };

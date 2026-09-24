@@ -651,9 +651,9 @@
   }
 
   .home-team-card {
-    width: min(14.75rem, 23vw);
-    min-width: 12.25rem;
-    height: 6.8rem;
+    width: clamp(18rem, 30vw, 28rem);
+    min-width: 18rem;
+    height: clamp(9rem, 16vh, 12rem);
     border: 1px solid rgba(226, 232, 240, 0.9);
     background-color: #fff;
     isolation: isolate;
@@ -1314,10 +1314,13 @@
     .home-title {
       font-size: clamp(2.85rem, min(6.7vw, 9.8vh), 6.5rem);
     }
-    .home-card,
-    .home-team-card {
+    .home-card {
       min-height: 7.7rem;
       height: 7.7rem;
+    }
+    .home-team-card {
+      min-height: 8.75rem;
+      height: 8.75rem;
     }
   }
 

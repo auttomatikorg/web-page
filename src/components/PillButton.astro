@@ -4,7 +4,7 @@ import { Icon } from "astro-icon/components";
 interface Props {
   href: string;
   variant?: "solid" | "glass";
-  size?: "md" | "lg";
+  size?: "md" | "lg" | "xl";
   class?: string;
   external?: boolean;
 }
@@ -21,8 +21,10 @@ const {
 const sizes = {
   md: "gap-3 py-1.5 pl-5 pr-1.5 text-[1.0625rem]",
   lg: "gap-4 py-2 pl-7 pr-2 text-[1.125rem]",
+  xl: "gap-5 py-3 pl-9 pr-3 text-[1.35rem]",
 };
-const knob = size === "lg" ? "h-11 w-11" : "h-10 w-10";
+const knob = size === "xl" ? "h-14 w-14" : size === "lg" ? "h-11 w-11" : "h-10 w-10";
+const iconSize = size === "xl" ? "h-5 w-5" : "h-4 w-4";
 
 const variants = {
   solid:
@@ -47,6 +49,6 @@ const knobTone =
     class={`grid shrink-0 place-items-center rounded-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/pill:rotate-45 ${knob} ${knobTone}`}
     aria-hidden="true"
   >
-    <Icon name="lucide:arrow-up-right" class="h-4 w-4" />
+    <Icon name="lucide:arrow-up-right" class={iconSize} />
   </span>
 </a>

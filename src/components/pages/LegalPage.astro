@@ -7,7 +7,7 @@ import type { PageKey } from "@/i18n/utils";
 
 interface Props {
   lang: Locale;
-  doc: "legal" | "privacy" | "cookies";
+  doc: "legal" | "terms" | "privacy" | "cookies";
 }
 const { lang, doc } = Astro.props;
 const bundle = getLegal(lang);
