@@ -32,7 +32,7 @@ export const SITE = {
     /** Cal link path (namespace), e.g. "auttomatik/consulting" */
     calLink: "auttomatik/consulting",
     /** Full booking URL (used by every CTA button and as embed fallback) */
-    bookingUrl: "https://cal.eu/auttomatik/consulting",
+    bookingUrl: "https://cal.com/auttomattik/auditoria-gratuita",
     /** Cal instance origin for the inline embed (Cal EU instance) */
     calOrigin: "https://cal.eu",
     /** Cal embed script for that instance */
